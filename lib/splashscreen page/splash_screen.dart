@@ -1,8 +1,8 @@
-import 'dart:ffi';
 import 'package:blinking_border/blinking_border.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_shaders_ui/flutter_shaders_ui.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -39,20 +39,27 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final width = constraints.maxWidth;
+      //backgroundColor: Colors.black,
+      body: WaveBackground(
+        color1: Colors.green.shade700,
+        color2: const Color(0xFF000000),
+        child: _Mainbody(),
+      ),
+    );
+  }
 
-            // 🔥 Breakpoint
-            if (width < 600) {
-              return _mobileview(constraints);
-            } else {
-              return _tabletLayout(constraints);
-            }
-          },
-        ),
+  Widget _Mainbody() {
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+
+          if (width < 600) {
+            return _mobileview(constraints);
+          } else {
+            return _tabletLayout(constraints);
+          }
+        },
       ),
     );
   }
@@ -106,7 +113,47 @@ class _SplashScreenState extends State<SplashScreen>
   Widget _tabletLayout(BoxConstraints constraints) {
     final w = constraints.maxWidth;
     final h = constraints.maxHeight;
-    return SingleChildScrollView(child: Column(children: [_iconview(w, h)]));
+    return Column(
+      children: [
+        Expanded(
+          child: Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ScaleTransition(
+                      scale: _scaleAnimation,
+                      child: ZoomTapAnimation(
+                        onTap: () {},
+                        child: Container(
+                          child: Icon(
+                            Icons.wallet,
+                            size: w * 0.08,
+                            color: Colors.black,
+                          ),
+                          width: w * 0.1,
+                          height: h * 0.2,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                _iconview(w, h),
+              ],
+            ),
+          ),
+        ),
+        _bottomwidget(w, h),
+        SizedBox(height: h * 0.05),
+      ],
+    );
   }
 }
 
@@ -115,20 +162,11 @@ Widget _iconview(double w, double h) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        /* Container(
-          child: Icon(Icons.wallet, size: w * 0.12, color: Colors.black),
-          width: w * 0.3,
-          height: h * 0.1,
-          decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),*/
         SizedBox(height: h * 0.01),
         Text(
           "Cash Pay",
           style: TextStyle(
-            fontSize: w * 0.10,
+            fontSize: w * 0.08,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
