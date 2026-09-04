@@ -200,7 +200,7 @@ Widget _bottomwidget(double w, double h) {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          width: w * 0.6,
+          width: w * 0.6,gh --version
           height: h * 0.1,
           child: AnimatedTextKit(
             animatedTexts: [
