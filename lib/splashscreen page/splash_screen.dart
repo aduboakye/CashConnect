@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_shaders_ui/flutter_shaders_ui.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -200,14 +201,24 @@ Widget _bottomwidget(double w, double h) {
       children: [
         SizedBox(
           width: w * 0.6,
-          child: Text(
-            "INITIALIZING SECURELY",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.green,
-            ),
+          height: h * 0.1,
+          child: AnimatedTextKit(
+            animatedTexts: [
+              for (final word in ['INITIALIZING...', 'SECURELY'])
+                TyperAnimatedText(
+                  word,
+                  textAlign: TextAlign.center,
+                  speed: const Duration(milliseconds: 80), // typing speed per character
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+            ],
+            pause: const Duration(milliseconds: 2500), // static, readable hold after each word finishes typing
+            isRepeatingAnimation: true,
+            repeatForever: true,
           ),
         ),
         SizedBox(height: h * 0.01),
