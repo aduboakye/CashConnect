@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>
                         onTap: () {},
                         child: Container(
                           child: Icon(
-                            Icons.wallet,
+                            Icons.account_balance_wallet,
                             size: w * 0.12,
                             color: Colors.black,
                           ),
@@ -131,7 +131,7 @@ class _SplashScreenState extends State<SplashScreen>
                         onTap: () {},
                         child: Container(
                           child: Icon(
-                            Icons.wallet,
+                            Icons.account_balance_wallet,
                             size: w * 0.08,
                             color: Colors.black,
                           ),
@@ -208,7 +208,9 @@ Widget _bottomwidget(double w, double h) {
                 TyperAnimatedText(
                   word,
                   textAlign: TextAlign.center,
-                  speed: const Duration(milliseconds: 80), // typing speed per character
+                  speed: const Duration(
+                    milliseconds: 80,
+                  ), // typing speed per character
                   textStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -216,7 +218,9 @@ Widget _bottomwidget(double w, double h) {
                   ),
                 ),
             ],
-            pause: const Duration(milliseconds: 2500), // static, readable hold after each word finishes typing
+            pause: const Duration(
+              milliseconds: 2500,
+            ), // static, readable hold after each word finishes typing
             isRepeatingAnimation: true,
             repeatForever: true,
           ),

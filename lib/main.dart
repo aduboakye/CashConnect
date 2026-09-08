@@ -1,5 +1,6 @@
 import 'package:cashconnect_fanancial_suite/splashscreen%20page/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:cashconnect_fanancial_suite/login and signup page/login_page.dart';
 
 void main() {
   runApp(const MyApp());
