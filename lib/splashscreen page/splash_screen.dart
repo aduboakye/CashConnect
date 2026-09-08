@@ -204,7 +204,7 @@ Widget _bottomwidget(double w, double h) {
           height: h * 0.1,
           child: AnimatedTextKit(
             animatedTexts: [
-              for (final word in ['INITIALIZING...', 'SECURELY'])
+              for (final word in ['INITIALIZING SECURELY','INITIALIZING... ', 'SECURELY'])
                 TyperAnimatedText(
                   word,
                   textAlign: TextAlign.center,
