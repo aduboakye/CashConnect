@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: h * 0.05),
+                 // SizedBox(height: h * 0.01),
                   Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: h * 0.05),
+                  SizedBox(height: h * 0.03),
                   TextField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(width: w * 0.18),
+                      SizedBox(width: w * 0.12),
                       Text(
                         "Forgot Password?",
                         style: TextStyle(
