@@ -3,6 +3,7 @@ import 'package:flutter_shaders_ui/flutter_shaders_ui.dart';
 import 'package:animate_text/animate_text.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:glow_effects/glow_effects.dart';
+import 'package:pretty_animated_text/pretty_animated_text.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -206,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                       icon: Shimmer.fromColors(
                         baseColor: Colors.black,
                         highlightColor: Colors.white,
-                        child: Icon(Icons.arrow_forward, size: w * 0.07),
+                        child: Icon(Icons.arrow_forward, size: w * 0.05),
                       ),
                     ),
                   ),
@@ -363,32 +364,66 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 30),
 
-                  Text(
+                  /* Text(
                     'Secure.',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: titleSize,
                       color: Colors.white,
                     ),
-                  ),
-
-                  Text(
-                    'Seamless.',
+                  ),*/
+                  BlurText(
+                    text: 'Secure.',
+                    //slideType: SlideAnimationType.topBottom,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: titleSize,
                       color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    config: const AnimationConfig(
+                      duration: Duration(seconds: 4),
+                      type: AnimationType.word,
+                      repeat: true,
+                    ),
+                  ),
+                  OffsetText(
+                    text: 'Seamless.',
+                    slideType: SlideAnimationType.topBottom,
+                    style: TextStyle(
+                      fontSize: titleSize,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    config: const AnimationConfig(
+                      duration: Duration(seconds: 4),
+                      type: AnimationType.word,
+                      repeat: true,
                     ),
                   ),
 
-                  Text(
+                  ChimeBellText(
+                    text: 'Instant.',
+                    //slideType: SlideAnimationType.topBottom,
+                    style: TextStyle(
+                      fontSize: titleSize,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    config: const AnimationConfig(
+                      duration: Duration(seconds: 4),
+                      type: AnimationType.word,
+                      repeat: true,
+                    ),
+                  ),
+
+                  /* Text(
                     'Instant.',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: titleSize,
                       color: Colors.white,
                     ),
-                  ),
+                  ),*/
                   const SizedBox(height: 20),
 
                   Text(
@@ -443,7 +478,7 @@ class _LoginPageState extends State<LoginPage> {
     // Responsive but with reasonable limits
     final titleSize = (w * 0.03).clamp(28.0, 42.0);
     final buttonTextSize = (w * 0.012).clamp(14.0, 18.0);
-    final iconSize = (w * 0.015).clamp(20.0, 28.0);
+    final iconSize = (w * 0.010).clamp(20.0, 28.0);
 
     return SafeArea(
       child: Center(
@@ -555,8 +590,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-
-                const SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text('Forgot Password?'),
+                  ),
+                ),
+                //   const SizedBox(height: 15),
 
                 // SIGN IN
                 SizedBox(
