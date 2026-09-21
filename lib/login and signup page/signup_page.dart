@@ -160,7 +160,7 @@ Widget _mobileview(BoxConstraints constraints) {
               SizedBox(height: 20),
               Row(
                 children: [
-                  //heckbox(),
+                  Checkbox(value: true, onChanged: (value) {}),
                   Text('I agree to the terms and conditions'),
                 ],
               ),
