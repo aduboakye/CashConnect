@@ -192,31 +192,53 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    'Email',
-                    style: TextStyle(color: Colors.black, fontSize: 15),
-                  ),
-                  TextField(
+                  TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+
                     decoration: InputDecoration(
                       hintText: 'Enter your email',
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
+
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black),
                       ),
+
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide: const BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
                       ),
+
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide: const BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
                       ),
+
                       errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(0),
-                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                          width: 2,
+                        ),
                       ),
                     ),
+
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email is required';
+                      }
+
+                      if (!value.contains('@')) {
+                        return 'Invalid email: @ is required';
+                      }
+
+                      return null;
+                    },
                   ),
                   SizedBox(height: 20),
                   Text(
