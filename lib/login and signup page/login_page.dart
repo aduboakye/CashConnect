@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         title: Align(
                           alignment: Alignment.centerLeft,
                           child: AnimateText(
-                            "Cash Pay",
+                            "CashPay",
                             style: TextStyle(
                               fontSize: w * 0.10,
                               fontWeight: FontWeight.bold,

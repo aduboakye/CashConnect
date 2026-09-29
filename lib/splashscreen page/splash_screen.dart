@@ -4,6 +4,7 @@ import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_shaders_ui/flutter_shaders_ui.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:drawing_animation_plus/drawing_animation_plus.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
-
+  bool _run = true;
   @override
   void initState() {
     super.initState();
@@ -61,6 +62,46 @@ class _SplashScreenState extends State<SplashScreen>
             return _tabletLayout(constraints);
           }
         },
+      ),
+    );
+  }
+
+  Widget _iconview(double w, double h) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: h * 0.01),
+          AnimatedDrawing.svg(
+            'images/CashPay.svg',
+            width: w * 0.5,
+            //  height: h * 0.5,
+            run: true,
+            duration: const Duration(seconds: 5),
+            lineAnimation: LineAnimation.oneByOne,
+            animationCurve: Curves.easeInOut,
+            repeat: false,
+            onFinish: () {
+              print('CashPay drawing finished');
+            },
+          ),
+          Shimmer.fromColors(
+            direction: ShimmerDirection.ltr,
+            period: const Duration(milliseconds: 1200),
+            loop: 0, // 0 = forever
+            enabled: true,
+            baseColor: Colors.white,
+            highlightColor: Colors.grey.shade600,
+            child: Text(
+              "Your Complete Financial Ecosystem",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -156,42 +197,6 @@ class _SplashScreenState extends State<SplashScreen>
       ],
     );
   }
-}
-
-Widget _iconview(double w, double h) {
-  return Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(height: h * 0.01),
-        Text(
-          "Cash Pay",
-          style: TextStyle(
-            fontSize: w * 0.08,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-
-        Shimmer.fromColors(
-          direction: ShimmerDirection.ltr,
-          period: const Duration(milliseconds: 1200),
-          loop: 0, // 0 = forever
-          enabled: true,
-          baseColor: Colors.white,
-          highlightColor: Colors.grey.shade600,
-          child: Text(
-            "Your Complete Financial Ecosystem",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.normal,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }
 
 Widget _bottomwidget(double w, double h) {

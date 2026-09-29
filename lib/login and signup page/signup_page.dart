@@ -157,12 +157,13 @@ class _SignupPageState extends State<SignupPage> {
                     "Create Account",
                     style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
-                  Text(
-                    'Start managing your finances with precison and security',
-                    maxLines: 1,
-                    softWrap: false,
-                    // overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'Start managing your finances with precision and security',
+                      maxLines: 1,
+                      style: TextStyle(color: Colors.black, fontSize: 15),
+                    ),
                   ),
                   SizedBox(height: 20),
                   Text(
