@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - pretty_animated_text (3.1.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - pretty_animated_text (from `.symlinks/plugins/pretty_animated_text/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  pretty_animated_text:
+    :path: ".symlinks/plugins/pretty_animated_text/ios"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  pretty_animated_text: 6b4185fd43c803c809cc0b1bde725b8ad348c8ed
+
+PODFILE CHECKSUM: e21d7389e566dac898a8949f4e9ef8b4c0d31563
+
+COCOAPODS: 1.16.2

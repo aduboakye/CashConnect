@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - pretty_animated_text (3.1.0):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - pretty_animated_text (from `Flutter/ephemeral/.symlinks/plugins/pretty_animated_text/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  pretty_animated_text:
+    :path: Flutter/ephemeral/.symlinks/plugins/pretty_animated_text/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  pretty_animated_text: 401af53e3ee380d60fd0c82747b7517256723246
+
+PODFILE CHECKSUM: 13edfb9e70ac3646927b8e6c9a212ad1d0fa29b2
+
+COCOAPODS: 1.16.2
