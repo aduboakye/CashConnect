@@ -271,16 +271,16 @@ class _BankdetailsState extends State<Bankdetails> {
                   children: [
                     Popularbanks(bankname: "Chase",subtile: "National Bank, Checking & Saving", image: "images/Chase-Bank-Logo.png"),
                     Positioned(
-                      top: 8,
-                      right: 8,
+                      top: 15,
+                      right: 50,
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: Colors.grey,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Text(
-                          'Popular',
+                          'Fast',
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ),
@@ -288,15 +288,35 @@ class _BankdetailsState extends State<Bankdetails> {
                   ],
                 ),
 
+Stack(
+  clipBehavior: Clip.none,
+  children: [
+    Popularbanks(bankname: "Bank of America",subtile: "Personal & Bussiness", image: "images/BAC-e7995069.png"),
+    Positioned(
+      top: 15,
+        right: 30,
+        child:  Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          'Fast',
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      ),)
+  ],
+),
 
 
 
 
 
-                Popularbanks(bankname: "Bank of America",subtile: "Personal & Bussiness", image: "images/BAC-e7995069.png"),
                 Popularbanks(bankname: "Well Fargo",subtile: "National Banking", image: "images/well fargo.png"),
                 Popularbanks(bankname: "Citibank",subtile: "Retail Banking & Wealth", image: "images/Citibank-Logo-PNG.png"),
-                Popularbanks(bankname: "Capital One",subtile: "360 checking & Credit", image: "images/Capital one1.png"),
+                Popularbanks(bankname: "Capital One",subtile: "360 checking & Credit"
+                    "", image: "images/Capital one1.png"),
                 Popularbanks(bankname: "PNC Bank",subtile: "National Bank, Checking & Saving", image: "images/PNC bank.png"),
                 Popularbanks(bankname: "TD Bank",subtile: "National Bank, Checking & Saving", image: "images/Chase-Bank-Logo.png"),
                 Popularbanks(bankname: "US Bank",subtile: "National Bank, Checking & Saving", image: "images/us-bank.png"),

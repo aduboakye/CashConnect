@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
   bool _run = true;
+  bool _drawingFinished = false;
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
       //backgroundColor: Colors.black,
       body: WaveBackground(
         color1: Colors.green.shade700,
+        //color1: Colors.white,
         color2: const Color(0xFF000000),
         child: _Mainbody(),
       ),
@@ -72,18 +74,58 @@ class _SplashScreenState extends State<SplashScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: h * 0.01),
-          AnimatedDrawing.svg(
-            'images/CashPay.svg',
-            width: w * 0.5,
-            //  height: h * 0.5,
-            run: true,
-            duration: const Duration(seconds: 5),
-            lineAnimation: LineAnimation.oneByOne,
-            animationCurve: Curves.easeInOut,
-            repeat: false,
-            onFinish: () {
-              print('CashPay drawing finished');
-            },
+          Stack(
+            alignment: Alignment.center,
+            children: [
+
+              // SVG drawing animation
+              AnimatedOpacity(
+                opacity: _drawingFinished ? 0 : 1,
+                duration: const Duration(milliseconds: 500),
+                child: AnimatedDrawing.svg(
+                  'images/WhatsAppImage2026-10-05at8.45.38AM-ezgif.com-crop.svg',
+                  width: w * 0.5,
+                  run: true,
+                  duration: const Duration(seconds: 5),
+                  lineAnimation: LineAnimation.oneByOne,
+                  animationCurve: Curves.easeInOut,
+                  repeat: false,
+                  onFinish: () {
+                    if (mounted) {
+                      setState(() {
+                        _drawingFinished = true;
+                      });
+                    }
+                  },
+                ),
+              ),
+
+              // Original colored logo
+              AnimatedOpacity(
+                opacity: _drawingFinished ? 1 : 0,
+                duration: const Duration(milliseconds: 800),
+                child: Image.asset(
+                  "images/cashpay.jpeg",
+                  width: w * 0.5,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              ScaleTransition(
+                scale: _scaleAnimation,
+                child: ZoomTapAnimation(
+                  onTap: () {},
+                  child:   AnimatedOpacity(
+                    opacity: _drawingFinished ? 1 : 0,
+                    duration: const Duration(milliseconds: 800),
+                    child: Image.asset(
+                      "images/cashpay.jpeg",
+                      width: w * 0.5,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           Shimmer.fromColors(
             direction: ShimmerDirection.ltr,
@@ -119,7 +161,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ScaleTransition(
+                   /* ScaleTransition(
                       scale: _scaleAnimation,
                       child: ZoomTapAnimation(
                         onTap: () {},
@@ -137,7 +179,7 @@ class _SplashScreenState extends State<SplashScreen>
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                     _iconview(w, h),
                   ],
                 ),
