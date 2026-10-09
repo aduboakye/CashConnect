@@ -4,6 +4,7 @@ import 'package:cashconnect_fanancial_suite/splashscreen%20page/splash_screen.da
 import 'package:flutter/material.dart';
 import 'package:cashconnect_fanancial_suite/login and signup page/login_page.dart';
 import 'package:cashconnect_fanancial_suite/login and signup page/signup_page.dart';
+import 'package:cashconnect_fanancial_suite/cashpay Dashboard/cashpay_dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  SplashScreen(),
+      home: const  CashpayDashboard(),
     );
   }
 }

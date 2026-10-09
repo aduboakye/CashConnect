@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.bottomLeft,
                     children: [
                       Image.asset(
-                        'images/cashpay.png',
+                        'images/div.png',
                         height: h * 0.2,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: AnimateText(
                             "CashPay",
                             style: TextStyle(
-                              fontSize: w * 0.10,
+                              fontSize: w * 0.12,
                               fontWeight: FontWeight.bold,
                               color: Colors.green.shade900,
                             ),
