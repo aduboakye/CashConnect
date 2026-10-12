@@ -1,5 +1,6 @@
 import 'package:cashconnect_fanancial_suite/login%20and%20signup%20page/bankdetails.dart';
 import 'package:cashconnect_fanancial_suite/login%20and%20signup%20page/bankpage.dart';
+import 'package:cashconnect_fanancial_suite/saiving%20vault/saving_vault.dart';
 import 'package:cashconnect_fanancial_suite/splashscreen%20page/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cashconnect_fanancial_suite/login and signup page/login_page.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  CashpayDashboard(),
+      home: const  SavingVault(),
     );
   }
 }

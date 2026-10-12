@@ -30,7 +30,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
     required String subtitle,
     required String amount,
     required IconData icon,
-    Color color = Colors.green,
+    Color color = Colors.black45,
   }) {
     return Column(
       children: [
@@ -88,6 +88,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -115,9 +116,9 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selected,
-        // selectedItemColor: colors[selected],
+
         type: BottomNavigationBarType.fixed,
-        // backgroundColor: colors[selected],
+
         onTap: (index) {
           setState(() {
             selected = index;
@@ -420,7 +421,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.green,
+                                color: Colors.black45,
                               ),
                             ),
                             SizedBox(width: 8),
@@ -434,6 +435,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 12,),
                         history(
                           icon: Icons.computer,
                           title: 'Dell',
@@ -466,3 +468,4 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
     );
   }
 }
+
