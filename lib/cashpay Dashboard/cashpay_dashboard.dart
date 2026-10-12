@@ -10,7 +10,21 @@ class CashpayDashboard extends StatefulWidget {
 class _CashpayDashboardState extends State<CashpayDashboard> {
   final List<double> analysis = [18, 98, 45, 33, 93, 75, 3];
   final List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  final List<Color> colors = [Color(0xFF006D33),  Color(0xFFCDBC00), Color(0xFFE2E2E2),];
 
+  Widget navicon({required IconData icon, required int index}) {
+    return Container(
+      width: 56,
+      height: 38.4,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: colors[index],
+      ),
+      child: Icon(icon, color: Colors.black),
+    );
+  }
+
+  int selected = 0;
   Widget history({
     required String title,
     required String subtitle,
@@ -18,58 +32,57 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
     required IconData icon,
     Color color = Colors.green,
   }) {
-    return  Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-
-               child: Icon(icon, color: color),
+    return Column(
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(10),
               ),
 
-              const SizedBox(width: 12),
+              child: Icon(icon, color: color),
+            ),
 
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+            const SizedBox(width: 12),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: const TextStyle(fontSize: 11, color: Colors.grey),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(fontSize: 11, color: Colors.grey),
+                  ),
+                ],
               ),
+            ),
 
-              const SizedBox(width: 8),
+            const SizedBox(width: 8),
 
-              Text(
-                amount,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              amount,
+              style: TextStyle(
+                fontSize: 13,
+                color: color,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-        ],
-
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -100,7 +113,42 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
           ),
         ),
       ),
-      //bottomNavigationBar: BottomNavigationBar(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selected,
+        // selectedItemColor: colors[selected],
+        type: BottomNavigationBarType.fixed,
+        // backgroundColor: colors[selected],
+        onTap: (index) {
+          setState(() {
+            selected = index;
+          });
+        },
+        unselectedItemColor: Colors.black54,
+
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Home',
+            activeIcon: navicon(icon: Icons.dashboard, index: 0),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.swap_horiz),
+            label: 'Transfer',
+            activeIcon: navicon(icon: Icons.swap_horiz, index: 2),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.savings),
+            label: 'savings',
+            activeIcon: navicon(icon: Icons.savings, index: 1),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments_rounded),
+            label: 'Expenses',
+            activeIcon: navicon(icon: Icons.payments_rounded, index: 1),
+          ),
+
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SafeArea(
@@ -354,7 +402,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                 ),
                 SizedBox(height: 24),
                 Center(
-                  child:  Container(
+                  child: Container(
                     width: 320,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
@@ -363,54 +411,53 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                     ),
 
                     child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Recent Activity',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Recent Activity',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            'See All',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
+                            SizedBox(width: 8),
+                            Text(
+                              'See All',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      history(
-                        icon: Icons.computer,
-                        title: 'Dell',
-                        subtitle: 'Oct 24, 2023',
-                        amount: r'-$1,299.00',
-                      ),
-                      SizedBox(height: 2),
-                      history(
-                        icon: Icons.airplanemode_active,
-                        title: 'JFK',
-                        subtitle: 'Oct 24, 2023',
-                        amount:  r'-$1,299.00',
-                      ),
-                      SizedBox(height: 2,),
-                      history(
-                        icon: Icons.apple,
-                        title: 'Apple Store',
-                        subtitle: 'Oct 24, 2023',
-                        amount: r'-$1,299.00',
-
-                      ),
-                    ],
+                          ],
+                        ),
+                        history(
+                          icon: Icons.computer,
+                          title: 'Dell',
+                          subtitle: 'Oct 24, 2023',
+                          amount: r'-$1,299.00',
+                        ),
+                        SizedBox(height: 2),
+                        history(
+                          icon: Icons.airplanemode_active,
+                          title: 'JFK',
+                          subtitle: 'Oct 24, 2023',
+                          amount: r'-$1,299.00',
+                        ),
+                        SizedBox(height: 2),
+                        history(
+                          icon: Icons.apple,
+                          title: 'Apple Store',
+                          subtitle: 'Oct 24, 2023',
+                          amount: r'-$1,299.00',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                )
               ],
             ),
           ),
