@@ -41,223 +41,354 @@ class _TransferPageState extends State<TransferPage> {
             ],
           ),
         ),
+
       ),
+      persistentFooterButtons: [
+Padding(padding: EdgeInsetsGeometry.only(left: 20,right: 20,top: 20,bottom: 32),
+  child: Container(
+    width: 350,
+    height: 60,
+    decoration: BoxDecoration(
+      color: Color(0xFFFAE500),
+      borderRadius: BorderRadius.circular(8),
+    ),
+
+      child:  Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Review Transfer',style: TextStyle(fontSize: 20,color: Color(0xFF1F1C00)),),
+          Icon(Icons.arrow_forward)
+        ],
+
+    )
+  ),
+)
+      ],
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 24),
-        child: Center(
-          child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.start,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              //crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  //height: 175,
+                  padding: EdgeInsetsGeometry.symmetric(
+                    horizontal: 24,
+                    vertical: 24,
+                  ),
+                  //color: Color(0xFF3C4A3D),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Color(0xFF3C4A3D), width: 1),
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        const Text(
+                          'SEND AMOUNT',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF3C4A3D),
+                          ),
+                        ),
+                        const Text(
+                          r'$ 250.00',
+                          style: TextStyle(
+                            fontSize: 48,
+                            color: Color(0xFF1A1C1C),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Divider(thickness: 2, height: 10),
+                        SizedBox(height: 5),
+                        Container(
+                          width: 140,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
+                          height: 24,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF16E678),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
 
-            children: [
-              Container(
-                width: double.infinity,
-                //height: 175,
-                padding: EdgeInsetsGeometry.symmetric(
-                  horizontal: 24,
-                  vertical: 24,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.account_balance_wallet_outlined,
+                                  size: 16,
+                                ),
+                                SizedBox(width: 4),
+                                Text('Balance: \$4,444.00'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                //color: Color(0xFF3C4A3D),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Color(0xFF3C4A3D), width: 1),
-                ),
-                child: Center(
+                SizedBox(height: 48),
+
+                Container(
+                  width: 355,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'SEND AMOUNT',
+                      Text(
+                        'Transfer Method',
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF3C4A3D),
-                        ),
-                      ),
-                      const Text(
-                        r'$ 250.00',
-                        style: TextStyle(
-                          fontSize: 48,
-                          color: Color(0xFF1A1C1C),
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFF1A1C1C),
                         ),
                       ),
-                      const Divider(thickness: 2, height: 10),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 171,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Color(0xFF006D33),
+                                width: 1,
+                              ),
+                              color: Color(0xFFE3E8E3),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 40,
+                                  height: 45,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF006D33),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(Icons.account_circle_outlined),
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  'Cashpay Member',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF006D33),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 171,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: Color(0xFF1A1C1C),
+                                width: 1,
+                              ),
+                              //    color: Color(0xFFE3E8E3)
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.account_balance, size: 35),
+                                SizedBox(height: 5),
+
+                                Text(
+                                  'Bank Account',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF006D33),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(height: 5),
                       Container(
-                        width: 140,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 4,
-                        ),
-                        height: 24,
+                        width: 355,
+                        height: 74,
+                        padding: EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
-                          color: Color(0xFF16E678),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.account_balance_wallet_outlined,
-                                size: 16,
-                              ),
-                              SizedBox(width: 4),
-                              Text('Balance: \$4,444.00'),
-                            ],
+                          border: Border.all(
+                            color: Color(0xFF1A1C1C),
+                            width: 1,
                           ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Icon(Icons.phone_android_rounded),
+                            SizedBox(width: 2),
+                            Expanded(
+                              child: ListTile(
+                                title: Text(
+                                  'Mobile Wallet',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                subtitle: Text(
+                                  'Send via phone number',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              ),
+                            ),
+                            //SizedBox(width: ),
+                            Icon(Icons.arrow_forward_ios),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 48),
+                      Container(
+                        width: 355,
+                        //height: 229,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'To who?',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF1A1C1C),
+                              ),
+                            ),
+                            SizedBox(height: 24),
+                            SizedBox(
+                              width: 355,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Name, @username, or email',
+                                  prefixIcon: const Icon(Icons.search),
+
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 24),
+                            Text(
+                              'RECENT CONNECTIONS',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF3C4A3D),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 16,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      width: 56,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                      child: Image.asset('images/Border.png'),
+                                    ),
+                                    Text(
+                                      'Sarah J.',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 16,),
+                                Column(
+                                  children: [
+                                    Container(
+                                      width: 56,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                      child: Image.asset('images/Border-2.png'),                                    ),
+                                    Text(
+                                      'Michael',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 16,),
+
+                                Column(
+                                  children: [
+                                    Container(
+                                      width: 56,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                     child:  ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Image.asset(
+                                          'images/AB6AXuAByiV9exJnOJzz-N5I2dCRMNnp10EQnwpG7F8Ih01O5OJfJGjvFYv5S8wt5TugO3ZmGFp-n4UZldOTCXxplkuqbfF9SyEhfQFAUjldEPGapURVy3vgrGbsdEs7JHVzFZza13nuBvppvvb8IxQPvvnv8FIgjXRD7kRPfU7FBIhb9kUWRGZO5K5LtzLvi7J6sNN7KTXuB58JgwbXKxiwhu9bzu-pr_uTNSXZNtX8neXdF36_ZbAU.png',
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Elena R.',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 16,),
+
+                                Column(
+                                  children: [
+                                    Container(
+                                      width: 56,
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                      child: Icon(Icons.add),
+                                    ),
+                                    Text(
+                                      'New',
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 48),
-
-              Container(
-                width: 355,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Transfer Method',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1A1C1C),
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          width: 171,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: Color(0xFF006D33),
-                              width: 1,
-                            ),
-                            color: Color(0xFFE3E8E3),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF006D33),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Icon(Icons.account_circle_outlined),
-                              ),
-                              SizedBox(height: 2),
-                              Text(
-                                'Cashpay Member',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF006D33),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 171,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: Color(0xFF1A1C1C),
-                              width: 1,
-                            ),
-                            //    color: Color(0xFFE3E8E3)
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(Icons.account_balance, size: 35),
-                              SizedBox(height: 5),
-
-                              Text(
-                                'Bank Account',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF006D33),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5,),
-                    Container(
-                      width: 355,
-                      height: 74,
-                      padding: EdgeInsets.symmetric(horizontal: 16,),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Color(0xFF1A1C1C),
-                            width: 1,
-                          ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.phone_android_rounded),
-                          SizedBox(width: 2),
-                          Expanded(
-                            child: ListTile(
-                              title: Text(
-                                'Mobile Wallet',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              subtitle: Text(
-                                'Send via phone number',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ),
-                          //SizedBox(width: ),
-                          Icon(Icons.arrow_forward_ios),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 48,),
-                    Container(
-                      width: 355,
-                      //height: 229,
-                      child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'To who?',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1A1C1C),
-                            ),
-                          ),
-                          SizedBox(height: 24,),
-                          SearchBar()
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

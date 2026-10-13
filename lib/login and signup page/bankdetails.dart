@@ -21,11 +21,13 @@ class _BankdetailsState extends State<Bankdetails> {
     );
   }
 
-  Widget Popularbanks({required String bankname, required String image, required String subtile}) {
+  Widget Popularbanks({
+    required String bankname,
+    required String image,
+    required String subtile,
+  }) {
     return Column(
-
       children: [
-
         Card.outlined(
           child: Column(
             children: [
@@ -43,8 +45,11 @@ class _BankdetailsState extends State<Bankdetails> {
                       cacheWidth: 72,
                     ),
                   ),
-                  title: Text(bankname,style: TextStyle(fontWeight: FontWeight.bold),),
-                  subtitle:   Text(subtile),
+                  title: Text(
+                    bankname,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(subtile),
                   trailing: Icon(Icons.chevron_right_outlined),
                 ),
               ),
@@ -100,7 +105,7 @@ class _BankdetailsState extends State<Bankdetails> {
                       ),
                     ),
 
-                    const SizedBox(width: 5,),
+                    const SizedBox(width: 5),
 
                     OutlinedButton.icon(
                       onPressed: () {},
@@ -243,38 +248,53 @@ class _BankdetailsState extends State<Bankdetails> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15,),
+                SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("10 verified institutions",style: TextStyle(color: Colors.black),),
+                        Text(
+                          "10 verified institutions",
+                          style: TextStyle(color: Colors.black),
+                        ),
                         Align(
-                            alignment: Alignment(-1,0),
-                            child:Text ("available",style: TextStyle(color: Colors.black),))
+                          alignment: Alignment(-1, 0),
+                          child: Text(
+                            "available",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(width: 10),
                     Column(
                       children: [
-                        Text("Instant",style: TextStyle(color: Colors.green),),
-                        Text("Auth",style: TextStyle(color: Colors.green),)
+                        Text("Instant", style: TextStyle(color: Colors.green)),
+                        Text("Auth", style: TextStyle(color: Colors.green)),
                       ],
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Stack(
-                  clipBehavior: Clip.none, // lets the badge stick out past the card
+                  clipBehavior:
+                      Clip.none, // lets the badge stick out past the card
                   children: [
-                    Popularbanks(bankname: "Chase",subtile: "National Bank, Checking & Saving", image: "images/Chase-Bank-Logo.png"),
+                    Popularbanks(
+                      bankname: "Chase",
+                      subtile: "National Bank, Checking & Saving",
+                      image: "images/Chase-Bank-Logo.png",
+                    ),
                     Positioned(
                       top: 15,
                       right: 50,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(12),
@@ -288,15 +308,22 @@ class _BankdetailsState extends State<Bankdetails> {
                   ],
                 ),
 
-Stack(
-  clipBehavior: Clip.none,
-  children: [
-    Popularbanks(bankname: "Bank of America",subtile: "Personal & Bussiness", image: "images/BAC-e7995069.png"),
-    Positioned(
-      top: 15,
-        right: 30,
-        child:  Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Popularbanks(
+                      bankname: "Bank of America",
+                      subtile: "Personal & Bussiness",
+                      image: "images/BAC-e7995069.png",
+                    ),
+                    Positioned(
+                      top: 15,
+                      right: 30,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(12),
@@ -305,26 +332,53 @@ Stack(
                           'Fast',
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
-                      ),)
-  ],
-),
+                      ),
+                    ),
+                  ],
+                ),
 
-
-
-
-
-                Popularbanks(bankname: "Well Fargo",subtile: "National Banking", image: "images/well fargo.png"),
-                Popularbanks(bankname: "Citibank",subtile: "Retail Banking & Wealth", image: "images/Citibank-Logo-PNG.png"),
-                Popularbanks(bankname: "Capital One",subtile: "360 checking & Credit"
-                    "", image: "images/Capital one1.png"),
-                Popularbanks(bankname: "PNC Bank",subtile: "National Bank, Checking & Saving", image: "images/PNC bank.png"),
-                Popularbanks(bankname: "TD Bank",subtile: "National Bank, Checking & Saving", image: "images/Chase-Bank-Logo.png"),
-                Popularbanks(bankname: "US Bank",subtile: "National Bank, Checking & Saving", image: "images/us-bank.png"),
-                Popularbanks(bankname: "Charles Schwab",subtile: "National Bank, Checking & Saving", image: "images/charles schwab.png"),
-                Popularbanks(bankname: "Ally Bank",subtile: "National Bank, Checking & Saving", image: "images/ally bank.png"),
-
-
-
+                Popularbanks(
+                  bankname: "Well Fargo",
+                  subtile: "National Banking",
+                  image: "images/well fargo.png",
+                ),
+                Popularbanks(
+                  bankname: "Citibank",
+                  subtile: "Retail Banking & Wealth",
+                  image: "images/Citibank-Logo-PNG.png",
+                ),
+                Popularbanks(
+                  bankname: "Capital One",
+                  subtile:
+                      "360 checking & Credit"
+                      "",
+                  image: "images/Capital one1.png",
+                ),
+                Popularbanks(
+                  bankname: "PNC Bank",
+                  subtile: "National Bank, Checking & Saving",
+                  image: "images/PNC bank.png",
+                ),
+                Popularbanks(
+                  bankname: "TD Bank",
+                  subtile: "National Bank, Checking & Saving",
+                  image: "images/Chase-Bank-Logo.png",
+                ),
+                Popularbanks(
+                  bankname: "US Bank",
+                  subtile: "National Bank, Checking & Saving",
+                  image: "images/us-bank.png",
+                ),
+                Popularbanks(
+                  bankname: "Charles Schwab",
+                  subtile: "National Bank, Checking & Saving",
+                  image: "images/charles schwab.png",
+                ),
+                Popularbanks(
+                  bankname: "Ally Bank",
+                  subtile: "National Bank, Checking & Saving",
+                  image: "images/ally bank.png",
+                ),
               ],
             ),
           ),
