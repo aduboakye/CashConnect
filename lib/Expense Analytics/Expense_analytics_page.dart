@@ -321,7 +321,7 @@ class _ExpenseAnalyticsPageState extends State<ExpenseAnalyticsPage> {
                         height: 300,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          children: [
+                          children: [ 
                             SizedBox(
                               width: 220,
                               height: 220,

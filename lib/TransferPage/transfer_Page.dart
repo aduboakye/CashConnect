@@ -290,7 +290,7 @@ class _TransferPageState extends State<TransferPage> {
                                             borderRadius: BorderRadius.circular(12),
                                             color: Color(0xFFEEEEEE),
                                           ),
-                                          child: Image.asset('images/Border.png'),
+                                          child: Image.asset('images/Border3.png'),
                                         ),
                                         Text(
                                           'Sarah J.',
@@ -329,7 +329,7 @@ class _TransferPageState extends State<TransferPage> {
                                          child:  ClipRRect(
                                             borderRadius: BorderRadius.circular(12),
                                             child: Image.asset(
-                                              'images/AB6AXuAByiV9exJnOJzz-N5I2dCRMNnp10EQnwpG7F8Ih01O5OJfJGjvFYv5S8wt5TugO3ZmGFp-n4UZldOTCXxplkuqbfF9SyEhfQFAUjldEPGapURVy3vgrGbsdEs7JHVzFZza13nuBvppvvb8IxQPvvnv8FIgjXRD7kRPfU7FBIhb9kUWRGZO5K5LtzLvi7J6sNN7KTXuB58JgwbXKxiwhu9bzu-pr_uTNSXZNtX8neXdF36_ZbAU.png',
+                                              'images/border.png',
                                               width: 100,
                                               height: 100,
                                               fit: BoxFit.cover,
