@@ -37,6 +37,7 @@ dependencies:
   glow_effects: ^0.2.0
   pretty_animated_text: ^3.2.0
   drawing_animation_plus: ^1.2.0
+  fl_chart: ^1.2.0
   flutter:
     sdk: flutter
 
