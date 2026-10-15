@@ -1,5 +1,6 @@
 import 'package:cashconnect_fanancial_suite/Expense%20Analytics/Expense_analytics_page.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/transfer_Page.dart';
+import 'package:cashconnect_fanancial_suite/loans%20and%20credit/loan_and_credit.dart';
 import 'package:cashconnect_fanancial_suite/login%20and%20signup%20page/bankdetails.dart';
 import 'package:cashconnect_fanancial_suite/login%20and%20signup%20page/bankpage.dart';
 import 'package:cashconnect_fanancial_suite/saiving%20vault/saving_vault.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  TransferPage(),
+      home: const LoanAndCredit(),
     );
   }
 }
