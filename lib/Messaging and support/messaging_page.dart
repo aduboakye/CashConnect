@@ -62,7 +62,47 @@ class _MessagingPageState extends State<MessagingPage> {
             ],
           ),
         ),
+
       ),
+      persistentFooterButtons: [
+        Container(
+          width: 390,
+          height: 86,
+          padding: EdgeInsetsGeometry.symmetric(vertical: 20,horizontal: 20),
+          child:Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+               IconButton(onPressed: (){}, icon: Icon(Icons.add_circle_outline_outlined)),
+                 Flexible(
+                   child: TextField(
+
+                    decoration: InputDecoration(
+                      fillColor: Color(0xFFF3F3F4),
+                      suffixIcon: Icon(Icons.emoji_emotions_outlined),
+                        hint: Text('Type a message...'),
+                        contentPadding: EdgeInsetsGeometry.symmetric(vertical: 16,horizontal: 20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )
+                    ),
+                                   ),
+                 ),
+              IconButton(onPressed: (){},
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.amberAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(12)
+                    )
+
+                  ),
+                  icon: Icon(Icons.send)),
+
+
+            ],
+          )
+        )
+      ],
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.symmetric(vertical: 20, horizontal: 24),
