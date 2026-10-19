@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CashpayDashboard extends StatefulWidget {
   const CashpayDashboard({super.key});
@@ -8,9 +9,43 @@ class CashpayDashboard extends StatefulWidget {
 }
 
 class _CashpayDashboardState extends State<CashpayDashboard> {
+  Widget textbutton({required String text, required IconData icon}) {
+    return TextButton.icon(
+      style: TextButton.styleFrom(
+        backgroundColor: Color(0xFFEEEEEE),
+        padding: EdgeInsets.symmetric(vertical: 4,horizontal: 10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(12)
+        )
+      ),
+      onPressed: () {},
+      label: Text(text,style: GoogleFonts.hankenGrotesk(fontSize: 11,color: Color(0xFF1A1C1C)),),
+      icon: Icon(icon,color: Color(0xFF006D33),),
+    );
+  }
+
+  Widget _actionButton() {
+    return IconButton(
+      onPressed: () {},
+      icon: const Icon(Icons.arrow_upward, size: 18),
+      style: IconButton.styleFrom(
+        backgroundColor: const Color(0xFF00D66B),
+        foregroundColor: Colors.white,
+        minimumSize: const Size(32, 32), // smaller than the default 48
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
+  }
+
   final List<double> analysis = [18, 98, 45, 33, 93, 75, 3];
   final List<String> days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  final List<Color> colors = [Color(0xFF006D33),  Color(0xFFCDBC00), Color(0xFFE2E2E2),];
+  final List<Color> colors = [
+    Color(0xFF006D33),
+    Color(0xFFCDBC00),
+    Color(0xFFE2E2E2),
+  ];
 
   Widget navicon({required IconData icon, required int index}) {
     return Container(
@@ -88,7 +123,6 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -147,7 +181,6 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
             label: 'Expenses',
             activeIcon: navicon(icon: Icons.payments_rounded, index: 1),
           ),
-
         ],
       ),
       body: Padding(
@@ -323,6 +356,191 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                   ],
                 ),
                 SizedBox(height: 24),
+                Container(
+                  width: 350,
+                  //height: 258.13,
+                  padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: Row(
+                              children: [
+                                TextButton.icon(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Color(0xFF00D66B),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadiusGeometry.circular(12),
+                                    ),
+                                  ),
+                                  icon: Icon(Icons.auto_awesome),
+                                  label: Text(
+                                    'CashPay AI',
+                                    style: GoogleFonts.hankenGrotesk(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF006D33),
+                                    ),
+                                  ),
+                                ),
+                                TextButton.icon(
+                                  onPressed: () {},
+
+                                  icon: Icon(
+                                    Icons.circle,
+                                    color: Color(0xFF00D66B),
+                                  ),
+                                  label: Text(
+                                    'Active',
+                                    style: GoogleFonts.hankenGrotesk(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF006D33),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(onPressed: () {}, icon: Icon(Icons.tune)),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Container(
+                        width: 298.5,
+                        //height: 77.63,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Color(0xFFF3F3F4),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Icon(
+                                Icons.insights,
+                                color: Color(0xFF006D33),
+                              ),
+                            ),
+                            SizedBox(width: 2),
+                            Expanded(
+                              child: Text.rich(
+                                TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.black87,
+                                    height: 1.4, // line spacing
+                                  ),
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Smart Spend Insight: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(text: 'You have '),
+                                    const TextSpan(
+                                      text: '\$320',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Colors.redAccent, // money going out
+                                      ),
+                                    ),
+                                    const TextSpan(
+                                      text:
+                                          ' in recurring subscriptions due this week. ',
+                                    ),
+                                    const TextSpan(
+                                      text: 'Projected month-end surplus is ',
+                                    ),
+                                    const TextSpan(
+                                      text: '\$1,850',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green, // money saved
+                                      ),
+                                    ),
+                                    const TextSpan(text: '.'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true, // needed for fillColor to show
+                                fillColor: const Color(0xFFF3F3F4),
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Image.asset(
+                                    'images/Margin.png',
+                                    width: 50, // was 16 (and the empty value)
+                                    height: 24,
+                                    fit: BoxFit
+                                        .contain, // keeps it from stretching
+                                  ),
+                                ),
+                                prefixIconConstraints: const BoxConstraints(
+                                  minWidth: 32,
+                                  minHeight: 32,
+                                ),
+                                hintText: 'Ask AI',
+                                hintStyle: GoogleFonts.hankenGrotesk(
+                                  color: const Color(0xFF3C4A3D),
+                                  fontSize: 12,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 6,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          _actionButton(),
+                          const SizedBox(width: 4),
+                          _actionButton(),
+                        ],
+                      ),
+                      SizedBox(height: 12,),
+                      SizedBox(
+                        height: 40,   // required: set this to your button's height
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          children: [
+                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                            const SizedBox(width: 8),
+                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                            const SizedBox(width: 8),
+                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 24),
                 Center(
                   child: Container(
                     width: 320,
@@ -349,31 +567,64 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 12),
+                        SizedBox(height: 24),
 
+                        //SizedBox(height: 24,),
                         SizedBox(
                           width: double.infinity,
-                          height: 96,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: List.generate(analysis.length, (index) {
-                              return Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 5,
+                          // height: 96,
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: 28.81,
+                                  height: 19,
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 2,
+                                    horizontal: 6,
                                   ),
-                                  child: Container(
-                                    height: analysis[index],
-                                    decoration: BoxDecoration(
-                                      color: index == 3
-                                          ? Colors.amber
-                                          : Colors.green,
-                                      borderRadius: BorderRadius.circular(5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(2),
+                                    color: Color(0xFF1A1C1C),
+                                  ),
+                                  child: FittedBox(
+                                    child: Text(
+                                      'Wed',
+                                      style: GoogleFonts.hankenGrotesk(
+                                        fontSize: 15,
+                                        color: Color(0xFFF9F9F9),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              );
-                            }),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: List.generate(analysis.length, (
+                                  index,
+                                ) {
+                                  return Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 5,
+                                      ),
+                                      child: Container(
+                                        height: analysis[index],
+                                        decoration: BoxDecoration(
+                                          color: index == 3
+                                              ? Colors.amber
+                                              : Colors.green,
+                                          borderRadius: BorderRadius.circular(
+                                            5,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: 2),
@@ -435,7 +686,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 12,),
+                        SizedBox(height: 12),
                         history(
                           icon: Icons.computer,
                           title: 'Dell',
@@ -468,4 +719,3 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
     );
   }
 }
-
