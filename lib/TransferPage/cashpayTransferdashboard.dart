@@ -18,10 +18,11 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required text,
     required String image,
     required IconData icon,
+    //bool isverified,
   }) {
     return Container(
       width: 350,
-     // height: 200,
+      // height: 200,
       padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,13 +33,17 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             child: Container(
               width: double.infinity,
               child: Row(
-                //mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(12),
-                      child: Image.asset(image)),
-                  Expanded(
+                    child: Image.asset(image),
+                  ),
+                  Flexible(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
+
                       children: [
                         Container(
                           width: double.infinity,
@@ -52,12 +57,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   color: Color(0xFF1A1C1C),
                                 ),
                               ),
-                             // SizedBox(width: 1),
-                              IconButton(
-                                onPressed: () {},
-
-                                icon: Icon(icon,color: Colors.green,),
-                              ),
+                              // SizedBox(width: 1),
+                              Icon(icon, color: Colors.green),
                             ],
                           ),
                         ),
@@ -112,7 +113,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                       ),
                     ),
                     icon: Icon(Icons.arrow_forward),
-                    iconAlignment:IconAlignment.end ,
+                    iconAlignment: IconAlignment.end,
                   ),
                 ],
               ),
@@ -128,6 +129,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required String surname,
     required IconData icon,
     bool isactive = true,
+    Color? color,
   }) {
     return Container(
       width: 334,
@@ -138,7 +140,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             leading: IconButton(
               onPressed: () {},
               style: IconButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
+                backgroundColor: color,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -195,6 +197,21 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   Icons.circle,
                   color: isactive ? Colors.greenAccent : Colors.grey,
                   size: 15,
+                ),
+              ),
+              Positioned(
+                left: 42,
+                top: -2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.amberAccent,
+                  ),
+                  child: Icon(
+                    Icons.star,
+                    color: isactive ? Colors.black : Colors.grey,
+                    size: 15,
+                  ),
                 ),
               ),
             ],
@@ -312,14 +329,48 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   ),
                 ],
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.receipt_long, color: Color(0xFF3C4A3D)),
-              ),
+             Row(mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                 IconButton(
+                   onPressed: () {},
+                   icon: Icon(Icons.dialpad, color: Color(0xFF3C4A3D)),
+                 ),
+                 IconButton(
+                   onPressed: () {},
+                   icon: Icon(Icons.receipt_long, color: Color(0xFF3C4A3D)),
+                 ),
+               ],
+             )
             ],
           ),
         ),
       ),
+      persistentFooterButtons: [
+        Container(
+          padding: EdgeInsets.only(top: 20, bottom: 32, left: 20, right: 20),
+          child: Container(
+            width: 350,
+            height: 60,
+            decoration: BoxDecoration(
+              color: Color(0xFFFAE500),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextButton.icon(
+              onPressed: () {},
+              icon: Icon(Icons.arrow_forward,color: Colors.black,),
+              iconAlignment: IconAlignment.end,
+              label: Text(
+                'Review Transfer',
+                style: GoogleFonts.hankenGrotesk(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1F1C00),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.symmetric(vertical: 24, horizontal: 20),
@@ -587,17 +638,21 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                           transferoption(
                             name: 'Add New Contact or @cashtag',
                             surname: 'Send directly to an unregistered tag',
-                            icon: Icons.qr_code,
+                            icon: Icons.person_add_alt,
+                            color: Color(0xFFC6EADC),
                           ),
                           transferoption(
-                            name: 'Add New Contact or @cashtag',
-                            surname: 'Send directly to an unregistered tag',
+                            name: 'Scan QR Code or Payment Link',
+                            surname: 'Camera scan, NFC touch, or image import',
                             icon: Icons.qr_code,
+                            color: Color(0xFFFAE500),
                           ),
                           transferoption(
-                            name: 'Add New Contact or @cashtag',
-                            surname: 'Send directly to an unregistered tag',
-                            icon: Icons.qr_code,
+                            name: 'Direct Mobile Phone or Email',
+                            surname:
+                                'Recipient receives instant claim link via SMS',
+                            icon: Icons.contactless_outlined,
+                            color: Color(0xFFE2E2E2),
                           ),
                         ],
                       ),
@@ -638,10 +693,55 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
                           ),
+                          recent(
+                            title: 'Sarah Jenkins',
+                            subtitle: '@mchen',
+                            text: 'Instant ACH Linked • Priority Payee',
+                            image: 'images/cashpaym1.png',
+                            icon: Icons.verified,
+                            subtitle1: 'chloe.b@design.io',
+                          ),
+                          recent(
+                            title: 'Sarah Jenkins',
+                            subtitle: '@mchen',
+                            text: 'Instant ACH Linked • Priority Payee',
+                            image: 'images/cashpaym1.png',
+                            icon: Icons.verified,
+                            subtitle1: 'chloe.b@design.io',
+                          ),
+                          recent(
+                            title: 'Sarah Jenkins',
+                            subtitle: '@mchen',
+                            text: 'Instant ACH Linked • Priority Payee',
+                            image: 'images/cashpaym1.png',
+                            icon: Icons.verified,
+                            subtitle1: 'chloe.b@design.io',
+                          ),
                         ],
                       ),
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 24),
+              Container(
+                width: 350,
+                padding: EdgeInsetsGeometry.symmetric(
+                  vertical: 12,
+                  horizontal: 12,
+                ),
+                decoration: BoxDecoration(color: Color(0xFFF3F3F4)),
+                child: TextButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.shield),
+                  label: Text(
+                    textAlign: TextAlign.center,
+                    '256-Bit Bank-Grade Encryption • Zero FeeInstant P2P',
+                    style: GoogleFonts.jetBrainsMono(
+                      fontSize: 12,
+                      color: Color(0xFF3C4A3D),
+                    ),
+                  ),
                 ),
               ),
             ],
