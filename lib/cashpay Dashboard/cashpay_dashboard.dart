@@ -24,18 +24,38 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
     );
   }
 
-  Widget _actionButton() {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.arrow_upward, size: 18),
-      style: IconButton.styleFrom(
-        backgroundColor: const Color(0xFF00D66B),
-        foregroundColor: Colors.white,
-        minimumSize: const Size(32, 32), // smaller than the default 48
-        padding: EdgeInsets.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
+  Widget _actionButton({required IconData icon1,required IconData icon2}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon:  Icon(icon1, size: 18),
+          style: IconButton.styleFrom(
+            backgroundColor: const Color(0xFF00D66B),
+            foregroundColor: Colors.white,
+            minimumSize: const Size(32, 32), // smaller than the default 48
+            padding: EdgeInsets.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+
+        ),
+        const SizedBox(width: 8),
+
+        IconButton(
+          onPressed: () {},
+          icon:  Icon(icon2, size: 18),
+          style: IconButton.styleFrom(
+            backgroundColor: const Color(0xFF00D66B),
+            foregroundColor: Colors.white,
+            minimumSize: const Size(32, 32), // smaller than the default 48
+            padding: EdgeInsets.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+      ],
     );
   }
 
@@ -480,6 +500,7 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                       ),
                       SizedBox(height: 12),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             child: TextField(
@@ -517,9 +538,10 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          _actionButton(),
-                          const SizedBox(width: 4),
-                          _actionButton(),
+                          //_actionButton(icon1: Icons.arrow_upward),
+                          _actionButton(icon1: Icons.arrow_upward, icon2: Icons.keyboard_voice)
+                         // const SizedBox(width: 4),
+                         // _actionButton(Icons.keyboard_voice),
                         ],
                       ),
                       SizedBox(height: 12,),
@@ -531,9 +553,9 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                           children: [
                             textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
                             const SizedBox(width: 8),
-                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                            textbutton(text: 'Forecast Cashflow', icon: Icons.trending_up),
                             const SizedBox(width: 8),
-                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                            textbutton(text: r'Save Extra $100', icon: Icons.savings),
                           ],
                         ),
                       ),
