@@ -10,23 +10,24 @@ class Cashpaytransferdashboard extends StatefulWidget {
 }
 
 class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
+  int? selectedMember;
   Widget recent({
     required String title,
     required String subtitle,
     required String subtitle1,
-
+    required bool isSelected,
     required text,
     required String image,
     required IconData icon,
-    //bool isverified,
+    required VoidCallback onTap,
+
   }) {
     return Container(
       width: 350,
       // height: 200,
       padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 12),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
 
         children: [
           Flexible(
@@ -58,7 +59,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                 ),
                               ),
                               // SizedBox(width: 1),
-                              Icon(icon, color: Colors.green),
+                              Icon(icon, color: Colors.green, size: 15),
                             ],
                           ),
                         ),
@@ -68,19 +69,27 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                subtitle,
-                                style: GoogleFonts.jetBrainsMono(
-                                  fontSize: 12,
-                                  color: Color(0xFF1A1C1C),
+                              Flexible(
+                                child: Text(
+                                  subtitle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.jetBrainsMono(
+                                    fontSize: 12,
+                                    color: Color(0xFF1A1C1C),
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 4),
-                              Text(
-                                subtitle1,
-                                style: GoogleFonts.jetBrainsMono(
-                                  fontSize: 12,
-                                  color: Color(0xFF1A1C1C),
+                              Expanded(
+                                child: Text(
+                                  subtitle1,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: GoogleFonts.jetBrainsMono(
+                                    fontSize: 12,
+                                    color: Color(0xFF1A1C1C),
+                                  ),
                                 ),
                               ),
                             ],
@@ -96,28 +105,33 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 10),
-                  TextButton.icon(
-                    onPressed: () {},
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(8),
-                      ),
-                    ),
-                    label: Text(
-                      'Pay',
-                      style: GoogleFonts.hankenGrotesk(
-                        fontSize: 11,
-                        color: Color(0xFF1A1C1C),
-                      ),
-                    ),
-                    icon: Icon(Icons.arrow_forward),
-                    iconAlignment: IconAlignment.end,
-                  ),
                 ],
               ),
             ),
+          ),
+          SizedBox(width: 10),
+          TextButton.icon(
+            onPressed: onTap,
+            style: IconButton.styleFrom(
+              backgroundColor:isSelected
+                  ? const Color(0xFF006D33)
+                  : const Color(0xFFE8E8E8),
+              foregroundColor: isSelected
+                  ? Colors.white
+                  : const Color(0xFF1A1C1C),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(8),
+              ),
+            ),
+            label: Text(
+              isSelected ? 'Pay' : 'Selected',
+              style: GoogleFonts.hankenGrotesk(
+                fontSize: 11,
+                color: Color(0xFF1A1C1C),
+              ),
+            ),
+            icon: isSelected ? Icon(Icons.arrow_forward) :Icon(Icons.chevron_right),
+            iconAlignment: IconAlignment.end,
           ),
         ],
       ),
@@ -178,6 +192,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required String surname,
     required String image,
     bool isactive = true,
+    bool hasStar = false,
   }) {
     return Container(
       width: 70,
@@ -199,21 +214,23 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   size: 15,
                 ),
               ),
-              Positioned(
-                left: 42,
-                top: -2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.amberAccent,
-                  ),
-                  child: Icon(
-                    Icons.star,
-                    color: isactive ? Colors.black : Colors.grey,
-                    size: 15,
+              if (hasStar)
+                Positioned(
+                  right: -1,
+                  top: -2,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.amberAccent,
+                    ),
+                    child: const Icon(
+                      Icons.star,
+                      color: Colors.black,
+                      size: 15,
+                    ),
                   ),
                 ),
-              ),
+
             ],
           ),
           ListTile(
@@ -329,18 +346,19 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   ),
                 ],
               ),
-             Row(mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-                 IconButton(
-                   onPressed: () {},
-                   icon: Icon(Icons.dialpad, color: Color(0xFF3C4A3D)),
-                 ),
-                 IconButton(
-                   onPressed: () {},
-                   icon: Icon(Icons.receipt_long, color: Color(0xFF3C4A3D)),
-                 ),
-               ],
-             )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dialpad, color: Color(0xFF3C4A3D)),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.receipt_long, color: Color(0xFF3C4A3D)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -357,7 +375,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             ),
             child: TextButton.icon(
               onPressed: () {},
-              icon: Icon(Icons.arrow_forward,color: Colors.black,),
+              icon: Icon(Icons.arrow_forward, color: Colors.black),
               iconAlignment: IconAlignment.end,
               label: Text(
                 'Review Transfer',
@@ -591,32 +609,43 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: true, // Green circle
+                            hasStar: true,  // Show star
                           ),
                           cashpaymember(
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: false, // Grey circle
+                            hasStar: false,  // No star
                           ),
                           cashpaymember(
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: true,
+                            hasStar: false,
                           ),
                           cashpaymember(
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: false,
+                            hasStar: true,
                           ),
                           cashpaymember(
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: true,
+                            hasStar: true,
                           ),
-
                           cashpaymember(
                             name: 'Sarah',
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
+                            isactive: false,
+                            hasStar: false,
                           ),
                         ],
                       ),
@@ -692,6 +721,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            isSelected: selectedMember == 0,
+                            onTap: () {
+                              setState(() => selectedMember = 0);
+                            },
                           ),
                           recent(
                             title: 'Sarah Jenkins',
@@ -700,6 +733,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            isSelected: selectedMember == 2,
+                            onTap: () {
+                              setState(() => selectedMember = 2);
+                            },
                           ),
                           recent(
                             title: 'Sarah Jenkins',
@@ -708,6 +745,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            isSelected: selectedMember == 1,
+                            onTap: () {
+                              setState(() => selectedMember = 1);
+                            },
                           ),
                           recent(
                             title: 'Sarah Jenkins',
@@ -716,6 +757,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            isSelected: selectedMember == 3,
+                            onTap: () {
+                              setState(() => selectedMember = 3);
+                            },
                           ),
                         ],
                       ),
