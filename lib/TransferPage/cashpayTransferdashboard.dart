@@ -11,6 +11,9 @@ class Cashpaytransferdashboard extends StatefulWidget {
 
 class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
   int? selectedMember;
+  int? selectedcashpayMember;
+  int? selectedTransfer;
+
   Widget recent({
     required String title,
     required String subtitle,
@@ -20,120 +23,129 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required String image,
     required IconData icon,
     required VoidCallback onTap,
-
   }) {
-    return Container(
-      width: 350,
-      // height: 200,
-      padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        width: 350,
+        // height: 200,
+        padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 12),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? const Color(0xFF006D33) : Colors.transparent,
+          ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
 
-        children: [
-          Flexible(
-            child: Container(
-              width: double.infinity,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(12),
-                    child: Image.asset(image),
-                  ),
-                  Flexible(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-
-                      children: [
-                        Container(
-                          width: double.infinity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                title,
-                                style: GoogleFonts.hankenGrotesk(
-                                  fontSize: 15,
-                                  color: Color(0xFF1A1C1C),
-                                ),
-                              ),
-                              // SizedBox(width: 1),
-                              Icon(icon, color: Colors.green, size: 15),
-                            ],
-                          ),
-                        ),
-
-                        Container(
-                          width: double.infinity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  subtitle,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.jetBrainsMono(
-                                    fontSize: 12,
-                                    color: Color(0xFF1A1C1C),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 4),
-                              Expanded(
-                                child: Text(
-                                  subtitle1,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.jetBrainsMono(
-                                    fontSize: 12,
-                                    color: Color(0xFF1A1C1C),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          text,
-                          style: GoogleFonts.hankenGrotesk(
-                            fontSize: 11,
-                            color: Color(0xFF1A1C1C),
-                          ),
-                        ),
-                      ],
+          children: [
+            Flexible(
+              child: Container(
+                width: double.infinity,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(12),
+                      child: Image.asset(image),
                     ),
-                  ),
-                ],
+                    Flexible(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  title,
+                                  style: GoogleFonts.hankenGrotesk(
+                                    fontSize: 15,
+                                    color: Color(0xFF1A1C1C),
+                                  ),
+                                ),
+                                // SizedBox(width: 1),
+                                Icon(icon, color: Colors.green, size: 15),
+                              ],
+                            ),
+                          ),
+
+                          Container(
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    subtitle,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.jetBrainsMono(
+                                      fontSize: 12,
+                                      color: Color(0xFF1A1C1C),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 4),
+                                Expanded(
+                                  child: Text(
+                                    subtitle1,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.jetBrainsMono(
+                                      fontSize: 12,
+                                      color: Color(0xFF1A1C1C),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            text,
+                            style: GoogleFonts.hankenGrotesk(
+                              fontSize: 11,
+                              color: Color(0xFF1A1C1C),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 10),
-          TextButton.icon(
-            onPressed: onTap,
-            style: IconButton.styleFrom(
-              backgroundColor:isSelected
-                  ? const Color(0xFF006D33)
-                  : const Color(0xFFE8E8E8),
-              foregroundColor: isSelected
-                  ? Colors.white
-                  : const Color(0xFF1A1C1C),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(8),
+            SizedBox(width: 10),
+            TextButton.icon(
+              onPressed: onTap,
+              style: IconButton.styleFrom(
+                backgroundColor: isSelected
+                    ? const Color(0xFF006D33)
+                    : const Color(0xFFE8E8E8),
+                foregroundColor: isSelected
+                    ? Color(0xFF1A1C1C) //Colors.white
+                    : const Color(0xFF1A1C1C),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.circular(8),
+                ),
               ),
-            ),
-            label: Text(
-              isSelected ? 'Pay' : 'Selected',
-              style: GoogleFonts.hankenGrotesk(
-                fontSize: 11,
-                color: Color(0xFF1A1C1C),
+              label: Text(
+                isSelected ? 'Selected' : 'Select',
+                style: GoogleFonts.hankenGrotesk(
+                  fontSize: 11,
+                  color: Color(0xFF1A1C1C),
+                ),
               ),
+              icon: isSelected ? Icon(Icons.check) : Icon(Icons.chevron_right),
+              iconAlignment: IconAlignment.end,
             ),
-            icon: isSelected ? Icon(Icons.arrow_forward) :Icon(Icons.chevron_right),
-            iconAlignment: IconAlignment.end,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -144,45 +156,55 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required IconData icon,
     bool isactive = true,
     Color? color,
+    required isSelected,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      width: 334,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            leading: IconButton(
-              onPressed: () {},
-              style: IconButton.styleFrom(
-                backgroundColor: color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-
-              icon: Icon(icon),
-            ),
-            title: FittedBox(
-              child: Text(
-                name,
-                style: GoogleFonts.hankenGrotesk(
-                  fontSize: 12,
-                  color: Color(0xFF1A1C1C),
-                ),
-              ),
-            ),
-            subtitle: FittedBox(
-              child: Text(
-                surname,
-                style: GoogleFonts.jetBrainsMono(
-                  fontSize: 10,
-                  color: Color(0xFF1A1C1C),
-                ),
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 334,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? const Color(0xFF006D33) : Colors.transparent,
           ),
-        ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              leading: IconButton(
+                onPressed: () {},
+                style: IconButton.styleFrom(
+                  backgroundColor: color,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+
+                icon: Icon(icon),
+              ),
+              title: FittedBox(
+                child: Text(
+                  name,
+                  style: GoogleFonts.hankenGrotesk(
+                    fontSize: 12,
+                    color: Color(0xFF1A1C1C),
+                  ),
+                ),
+              ),
+              subtitle: FittedBox(
+                child: Text(
+                  surname,
+                  style: GoogleFonts.jetBrainsMono(
+                    fontSize: 10,
+                    color: Color(0xFF1A1C1C),
+                  ),
+                ),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -193,17 +215,35 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     required String image,
     bool isactive = true,
     bool hasStar = false,
+    required isSelected,
+    required VoidCallback onTap,
   }) {
     return Container(
       width: 70,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(image, width: 56),
+              GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: isSelected
+                          ? const Color(0xFF006D33)
+                          : Colors.transparent,
+                    ),
+                    color: isSelected
+                        ? const Color(0xFF006D33)
+                        : Colors.transparent,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(image, width: 56),
+                  ),
+                ),
               ),
               Positioned(
                 left: 42,
@@ -216,7 +256,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
               ),
               if (hasStar)
                 Positioned(
-                  right: -1,
+                  left: -1,
                   top: -2,
                   child: Container(
                     decoration: const BoxDecoration(
@@ -230,7 +270,25 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                     ),
                   ),
                 ),
-
+              if (isSelected)
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: IgnorePointer(
+                    child: Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF006D33),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: 14,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
           ListTile(
@@ -267,7 +325,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
   ];
 
   int selected = 0;
-  int selectedamount = 0;
+  int? selectedamount;
+
+  final TextEditingController amountController = TextEditingController();
 
   Widget tabButton({required String text, required int index}) {
     final bool isSelected = selected == index;
@@ -292,7 +352,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     );
   }
 
-  final List<String> amount = [r'+$10', r'+$25', r'+$25', r'+$25', 'clear'];
+  final List<String> amount = [r'+$10', r'+$25', r'+50', r'+$100', 'clear'];
 
   //int selected = 0;
 
@@ -302,7 +362,17 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     return TextButton(
       onPressed: () {
         setState(() {
-          selectedamount = index;
+          if (text.toLowerCase() == 'clear') {
+            amountController.clear();
+            selectedamount = null;
+          } else {
+            selectedamount = index;
+
+            amountController.text = text
+                .replaceAll('+', '')
+                .replaceAll(r'$', '')
+                .trim();
+          }
         });
       },
       style: TextButton.styleFrom(
@@ -518,8 +588,14 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   width: 192,
                                   height: 40,
                                   child: TextField(
-                                    decoration: InputDecoration(
-                                      //border: OutlineInputBorder(),
+                                    textAlign: TextAlign.center,
+                                    controller: amountController,
+                                    keyboardType:
+                                        const TextInputType.numberWithOptions(
+                                          decimal: true,
+                                        ),
+                                    decoration: const InputDecoration(
+                                      hintText: '0.00',
                                     ),
                                   ),
                                 ),
@@ -610,28 +686,11 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             surname: '@sarahj',
                             image: 'images/cashpaym1.png',
                             isactive: true, // Green circle
-                            hasStar: true,  // Show star
-                          ),
-                          cashpaymember(
-                            name: 'Sarah',
-                            surname: '@sarahj',
-                            image: 'images/cashpaym1.png',
-                            isactive: false, // Grey circle
-                            hasStar: false,  // No star
-                          ),
-                          cashpaymember(
-                            name: 'Sarah',
-                            surname: '@sarahj',
-                            image: 'images/cashpaym1.png',
-                            isactive: true,
-                            hasStar: false,
-                          ),
-                          cashpaymember(
-                            name: 'Sarah',
-                            surname: '@sarahj',
-                            image: 'images/cashpaym1.png',
-                            isactive: false,
                             hasStar: true,
+                            isSelected: selectedcashpayMember == 5,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 5);
+                            },
                           ),
                           cashpaymember(
                             name: 'Sarah',
@@ -639,6 +698,43 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true,
                             hasStar: true,
+                            isSelected: selectedcashpayMember == 0,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 0);
+                            },
+                          ),
+                          cashpaymember(
+                            name: 'Sarah',
+                            surname: '@sarahj',
+                            image: 'images/cashpaym1.png',
+                            isactive: true,
+                            hasStar: false,
+                            isSelected: selectedcashpayMember == 1,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 1);
+                            },
+                          ),
+                          cashpaymember(
+                            name: 'Sarah',
+                            surname: '@sarahj',
+                            image: 'images/cashpaym1.png',
+                            isactive: false,
+                            hasStar: true,
+                            isSelected: selectedcashpayMember == 2,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 2);
+                            },
+                          ),
+                          cashpaymember(
+                            name: 'Sarah',
+                            surname: '@sarahj',
+                            image: 'images/cashpaym1.png',
+                            isactive: true,
+                            hasStar: true,
+                            isSelected: selectedcashpayMember == 4,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 4);
+                            },
                           ),
                           cashpaymember(
                             name: 'Sarah',
@@ -646,6 +742,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: false,
                             hasStar: false,
+                            isSelected: selectedcashpayMember == 3,
+                            onTap: () {
+                              setState(() => selectedcashpayMember = 3);
+                            },
                           ),
                         ],
                       ),
@@ -669,12 +769,24 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             surname: 'Send directly to an unregistered tag',
                             icon: Icons.person_add_alt,
                             color: Color(0xFFC6EADC),
+                            isSelected: selectedTransfer == 0,
+                            onTap: () {
+                              setState(() {
+                                selectedTransfer = 0;
+                              });
+                            },
                           ),
                           transferoption(
                             name: 'Scan QR Code or Payment Link',
                             surname: 'Camera scan, NFC touch, or image import',
                             icon: Icons.qr_code,
                             color: Color(0xFFFAE500),
+                            isSelected: selectedTransfer == 1,
+                            onTap: () {
+                              setState(() {
+                                selectedTransfer = 1;
+                              });
+                            },
                           ),
                           transferoption(
                             name: 'Direct Mobile Phone or Email',
@@ -682,6 +794,12 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                 'Recipient receives instant claim link via SMS',
                             icon: Icons.contactless_outlined,
                             color: Color(0xFFE2E2E2),
+                            isSelected: selectedTransfer == 2,
+                            onTap: () {
+                              setState(() {
+                                selectedTransfer = 2;
+                              });
+                            },
                           ),
                         ],
                       ),
