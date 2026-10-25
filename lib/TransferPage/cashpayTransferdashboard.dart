@@ -10,6 +10,200 @@ class Cashpaytransferdashboard extends StatefulWidget {
 }
 
 class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
+  Widget sendTransferButton() {
+    return ValueListenableBuilder<TextEditingValue>(
+      valueListenable: amountController,
+      builder: (context, value, child) {
+        final amount = double.tryParse(value.text.trim()) ?? 0;
+
+        final validAmount = amount.isFinite && amount > 0;
+        final hasRecipient = selectedRecipientName != null;
+        final canContinue = validAmount && hasRecipient;
+
+        final formattedAmount =
+        validAmount ? amount.toStringAsFixed(2) : '0.00';
+
+        final String buttonText;
+
+        if (!hasRecipient) {
+          buttonText = 'Select a recipient';
+        } else if (!validAmount) {
+          buttonText = 'Enter an amount';
+        } else {
+          buttonText =
+          'Send \$$formattedAmount to $selectedRecipientName';
+        }
+
+        return Padding(
+          padding: const EdgeInsetsGeometry.all(0),
+          child: SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: TextButton.icon(
+              onPressed: canContinue
+                  ? () {
+                // Add navigation to your review page here.
+              }
+                  : null,
+              style: TextButton.styleFrom(
+                backgroundColor: const Color(0xFFFAE500),
+                foregroundColor: const Color(0xFF1F1C00),
+                disabledBackgroundColor: const Color(0xFFEEEEEE),
+                disabledForegroundColor: Colors.grey,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              icon: const Icon(Icons.arrow_forward),
+              iconAlignment: IconAlignment.end,
+              label: Text(
+                buttonText,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.hankenGrotesk(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+  final List<String> keypadKeys = [
+    '1', '2', '3',
+    '4', '5', '6',
+    '7', '8', '9',
+    '.', '0', '⌫',
+  ];
+  bool showKeypad = false;
+  Widget amountKeypad() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Color(0xFFF5F6F2),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Heading.
+          Row(
+            children: [
+              const Expanded(
+                child: Text(
+                  'Live Keypad • Instant Sync',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF3C4A3D),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showKeypad = false;
+
+                  });
+                },
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Hide',
+                      style: TextStyle(
+                        color: Color(0xFF3C4A3D),
+                      ),
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Color(0xFF3C4A3D),
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 12),
+
+          // All twelve keypad buttons.
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: keypadKeys.length,
+            gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisExtent: 56,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+            ),
+            itemBuilder: (context, index) {
+              final key = keypadKeys[index];
+
+              return TextButton(
+                onPressed: () {
+                  pressKey(key);
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFFFAFBF8),
+                  foregroundColor: const Color(0xFF1A1C1C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: const BorderSide(
+                      color: Color(0xFFE4E7E0),
+                    ),
+                  ),
+                ),
+                child: key == '⌫'
+                    ? const Icon(Icons.backspace_outlined)
+                    : Text(
+                  key,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+  void pressKey(String key) {
+    String text = amountController.text;
+
+    if (key == '⌫') {
+      // Remove the last character.
+      if (text.isNotEmpty) {
+        text = text.substring(0, text.length - 1);
+      }
+    } else if (key == '.') {
+      // Allow only one decimal point.
+      if (!text.contains('.')) {
+        text = text.isEmpty ? '0.' : '$text.';
+      }
+    } else {
+      // Allow only two digits after the decimal point.
+      if (text.contains('.') && text.split('.')[1].length >= 2) {
+        return;
+      }
+
+      text = text == '0' ? key : text + key;
+    }
+
+    // Display the result in the connected TextField.
+    amountController.text = text;
+  }
+  String? selectedRecipientName;
   int? selectedMember;
   int? selectedcashpayMember;
   int? selectedTransfer;
@@ -420,7 +614,11 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        showKeypad = !showKeypad;
+                      });
+                    },
                     icon: Icon(Icons.dialpad, color: Color(0xFF3C4A3D)),
                   ),
                   IconButton(
@@ -433,7 +631,44 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
           ),
         ),
       ),
-      persistentFooterButtons: [
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (showKeypad) amountKeypad(),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 48,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showKeypad = !showKeypad;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.dialpad,
+                        color: Color(0xFF3C4A3D),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 4),
+
+                  Expanded(
+                    child: sendTransferButton(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+     /* persistentFooterButtons: [
         Container(
           padding: EdgeInsets.only(top: 20, bottom: 32, left: 20, right: 20),
           child: Container(
@@ -458,7 +693,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             ),
           ),
         ),
-      ],
+      ],*/
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.symmetric(vertical: 24, horizontal: 20),
@@ -589,6 +824,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   height: 40,
                                   child: TextField(
                                     textAlign: TextAlign.center,
+                                    readOnly: true,
                                     controller: amountController,
                                     keyboardType:
                                         const TextInputType.numberWithOptions(
@@ -612,7 +848,11 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             ],
                           ),
                           TextButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                showKeypad = true;
+                              });
+                            },
                             label: Text(
                               'Tap to focus keypad',
                               style: GoogleFonts.jetBrainsMono(
@@ -690,6 +930,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 5,
                             onTap: () {
                               setState(() => selectedcashpayMember = 5);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           cashpaymember(
@@ -701,6 +943,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 0,
                             onTap: () {
                               setState(() => selectedcashpayMember = 0);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           cashpaymember(
@@ -712,6 +956,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 1,
                             onTap: () {
                               setState(() => selectedcashpayMember = 1);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           cashpaymember(
@@ -723,6 +969,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 2,
                             onTap: () {
                               setState(() => selectedcashpayMember = 2);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           cashpaymember(
@@ -734,6 +982,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 4,
                             onTap: () {
                               setState(() => selectedcashpayMember = 4);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           cashpaymember(
@@ -745,6 +995,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedcashpayMember == 3,
                             onTap: () {
                               setState(() => selectedcashpayMember = 3);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                         ],
@@ -798,6 +1050,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             onTap: () {
                               setState(() {
                                 selectedTransfer = 2;
+
                               });
                             },
                           ),
@@ -842,6 +1095,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedMember == 0,
                             onTap: () {
                               setState(() => selectedMember = 0);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           recent(
@@ -854,6 +1109,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedMember == 2,
                             onTap: () {
                               setState(() => selectedMember = 2);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           recent(
@@ -866,6 +1123,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedMember == 1,
                             onTap: () {
                               setState(() => selectedMember = 1);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                           recent(
@@ -878,6 +1137,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             isSelected: selectedMember == 3,
                             onTap: () {
                               setState(() => selectedMember = 3);
+                              selectedcashpayMember = null;
+                              selectedRecipientName = 'Sarah';
                             },
                           ),
                         ],
