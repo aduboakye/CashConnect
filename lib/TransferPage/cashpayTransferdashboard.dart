@@ -824,6 +824,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   height: 40,
                                   child: TextField(
                                     textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),
+
                                     readOnly: true,
                                     controller: amountController,
                                     keyboardType:
@@ -927,9 +929,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true, // Green circle
                             hasStar: true,
-                            isSelected: selectedcashpayMember == 5,
+                            isSelected: selectedMember == 5,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 5);
+                              setState(() =>selectedMember = 5);
                               selectedcashpayMember = null;
                               selectedRecipientName = 'Sarah';
                             },
@@ -940,9 +942,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true,
                             hasStar: true,
-                            isSelected: selectedcashpayMember == 0,
+                            isSelected: selectedMember == 0,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 0);
+                              setState(() => selectedMember = 0);
                               selectedcashpayMember = null;
                               selectedRecipientName = 'Sarah';
                             },
@@ -953,9 +955,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true,
                             hasStar: false,
-                            isSelected: selectedcashpayMember == 1,
+                            isSelected: selectedMember == 1,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 1);
+                              setState(() => selectedMember = 1);
                               selectedcashpayMember = null;
                               selectedRecipientName = 'Sarah';
                             },
@@ -966,9 +968,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: false,
                             hasStar: true,
-                            isSelected: selectedcashpayMember == 2,
+                            isSelected: selectedMember == 2,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 2);
+                              setState(() => selectedMember = 2);
                               selectedcashpayMember = null;
                               selectedRecipientName = 'Sarah';
                             },
