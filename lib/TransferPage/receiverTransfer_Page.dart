@@ -109,7 +109,7 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  title2,
+                  amountext,
                   textAlign: TextAlign.right,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -123,11 +123,20 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.check, size: 14, color: statusColor),
+                    Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: statusColor,
+                      ),
+                      child: Icon(Icons.check, size: 14, color: Colors.white),
+                    ),
+
                     const SizedBox(width: 4),
                     Flexible(
                       child: Text(
-                        amountext,
+                        title2,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.jetBrainsMono(
@@ -748,7 +757,9 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                                     color: const Color(0xFFEEEEEE),
                                   ),
                                   child: Row(
-                                    children: List.generate(filters.length, (index) {
+                                    children: List.generate(filters.length, (
+                                      index,
+                                    ) {
                                       final isSelected = selectedIndex == index;
 
                                       return Expanded(
@@ -768,7 +779,8 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                                               vertical: 12,
                                             ),
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(8),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
                                             ),
                                           ),
                                           child: Text(
@@ -828,6 +840,173 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                             title2: 'Settled',
                           ),
                         ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 350,
+                    padding: EdgeInsets.only(top: 24),
+                    child: Container(
+                      width: 350,
+                      //height: 325,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: 24,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Color(0xFFFFFFFF),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Payment & Routing Details',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF1A1C1C),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 24),
+                          Container(
+                            width: 302,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF3F3F4),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
+                              leading: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Icon(Icons.smartphone),
+                              ),
+                              title: Text(
+                                'Mobile Number',
+                                style: GoogleFonts.hankenGrotesk(
+                                  fontSize: 12,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                              ),
+                              subtitle: Text(
+                                '+1 (555) 019-2849',
+                                style: GoogleFonts.jetBrainsMono(
+                                  fontSize: 12,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                              ),
+                              trailing: Icon(
+                                Icons.content_copy,
+                                color: Color(0xFF006D33),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 12),
+                          Container(
+                            width: 302,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF3F3F4),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
+                              leading: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Icon(Icons.account_balance),
+                              ),
+                              title: Text(
+                                'Mobile Number',
+                                style: GoogleFonts.hankenGrotesk(
+                                  fontSize: 12,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                              ),
+                              subtitle: Text(
+                                'sarah.jenkins@paydirect',
+                                style: GoogleFonts.jetBrainsMono(
+                                  fontSize: 12,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              trailing: TextButton(
+                                onPressed: () {},
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Color(0x10006D33),
+                                  shape: RoundedRectangleBorder(
+                                    //borderRadius: BorderRadius.circular()
+                                  ),
+                                ),
+                                child: Text(
+                                  'Instant',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF006D33),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 24),
+                          Container(
+                            width: 302,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF3F3F4),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
+                              leading: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Icon(
+                                  Icons.lock,
+                                  color: Color(0xFF006D33),
+                                ),
+                              ),
+                              subtitle: Text(
+                                'Bank-Grade 256-bit Encrypted Connection •Mutual transfers protected by CashPay FraudShield',
+                                style: GoogleFonts.hankenGrotesk(
+                                  fontSize: 12,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
+                      ),
+                      fixedSize: Size(350,76),
+                      backgroundColor: Color(0xFFFAE500)
+
+                    ),
+                    icon: Icon(Icons.send),
+                    label: Text(
+                      'Send Message',
+                      style: GoogleFonts.hankenGrotesk(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1F1C00),
                       ),
                     ),
                   ),
