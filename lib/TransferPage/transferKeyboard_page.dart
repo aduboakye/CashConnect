@@ -9,6 +9,135 @@ class TransferkeyboardPage extends StatefulWidget {
 }
 
 class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
+  final List<String> keypadKeys = [
+    '1', '2', '3',
+    '4', '5', '6',
+    '7', '8', '9',
+    '.', '0', '⌫',
+  ];
+  bool showKeypad = false;
+  Widget amountKeypad() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Color(0xFFF5F6F2),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Heading.
+          Row(
+            children: [
+              const Expanded(
+                child: Text(
+                  'Live Keypad • Instant Sync',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF3C4A3D),
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showKeypad = false;
+
+                  });
+                },
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Hide',
+                      style: TextStyle(
+                        color: Color(0xFF3C4A3D),
+                      ),
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Color(0xFF3C4A3D),
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 12),
+
+          // All twelve keypad buttons.
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: keypadKeys.length,
+            gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisExtent: 56,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+            ),
+            itemBuilder: (context, index) {
+              final key = keypadKeys[index];
+
+              return TextButton(
+                onPressed: () {
+                  //pressKey(key);
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFFFAFBF8),
+                  foregroundColor: const Color(0xFF1A1C1C),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: const BorderSide(
+                      color: Color(0xFFE4E7E0),
+                    ),
+                  ),
+                ),
+                child: key == '⌫'
+                    ? const Icon(Icons.backspace_outlined)
+                    : Text(
+                  key,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+  int ? selectedamount;
+  final List<String> amount = [r'+$10', r'+$25', r'+50', r'+$100', 'clear'];
+  Widget amountButton({required String text, required int index}) {
+    final bool isSelected = selectedamount == index;
+
+    return TextButton(
+      onPressed: () {
+
+      },
+      style: TextButton.styleFrom(
+        backgroundColor: isSelected ? Colors.black : const Color(0xFFEEEEEE),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+      child: Text(
+        text,
+        style: GoogleFonts.hankenGrotesk(
+          fontSize: 12,
+          color: isSelected ? Colors.white : const Color(0xFF3C4A3D),
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,7 +244,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                   ),
                   Container(
                     width: 390,
-                    height: 400,
+                   // height: 400,
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -402,10 +531,28 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
 
                                         ],
                                       ),
+
                                     ],
                                   ),
                                 ),
                               ),
+                              SizedBox(height: 10,),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: List.generate(amount.length, (index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(right: 8),
+                                      child: amountButton(
+                                        text: amount[index],
+                                        index: index,
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ),
+                              SizedBox(height: 10,),
+                              amountKeypad(),
                             ],
                           ),
                         ),
