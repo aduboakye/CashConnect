@@ -13,6 +13,8 @@ import 'package:cashconnect_fanancial_suite/login and signup page/signup_page.da
 import 'package:cashconnect_fanancial_suite/cashpay Dashboard/cashpay_dashboard.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/receiverTransfer_Page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/transferKeyboard_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const ReceivertransferPage(),
+      home: const TransferkeyboardPage(),
     );
   }
 }
