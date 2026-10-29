@@ -9,11 +9,21 @@ class TransferkeyboardPage extends StatefulWidget {
 }
 
 class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
+  final TextEditingController amountController = TextEditingController();
+
   final List<String> keypadKeys = [
-    '1', '2', '3',
-    '4', '5', '6',
-    '7', '8', '9',
-    '.', '0', '⌫',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '.',
+    '0',
+    '⌫',
   ];
   bool showKeypad = false;
   Widget amountKeypad() {
@@ -21,9 +31,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Color(0xFFF5F6F2),
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(16),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -45,18 +53,12 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                 onPressed: () {
                   setState(() {
                     showKeypad = false;
-
                   });
                 },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Hide',
-                      style: TextStyle(
-                        color: Color(0xFF3C4A3D),
-                      ),
-                    ),
+                    Text('Hide', style: TextStyle(color: Color(0xFF3C4A3D))),
                     Icon(
                       Icons.keyboard_arrow_down,
                       color: Color(0xFF3C4A3D),
@@ -76,8 +78,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: keypadKeys.length,
-            gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisExtent: 56,
               mainAxisSpacing: 8,
@@ -88,27 +89,85 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
 
               return TextButton(
                 onPressed: () {
-                  //pressKey(key);
+                  // Remove commas before editing the number.
+                  String currentText = amountController.text.replaceAll(',', '');
+                  String nextText;
+
+                  if (key == '⌫') {
+                    if (currentText.isEmpty) return;
+
+                    nextText = currentText.substring(0, currentText.length - 1);
+                  } else if (key == '.') {
+                    // Only one decimal point is allowed.
+                    if (currentText.contains('.')) return;
+
+                    nextText = currentText.isEmpty ? '0.' : '$currentText.';
+                  } else {
+                    final parts = currentText.split('.');
+
+                    if (parts.length == 2) {
+                      // Maximum two decimal digits.
+                      if (parts[1].length >= 2) return;
+                    } else {
+                      if (currentText == '0') {
+                        currentText = '';
+                      }
+
+                      // Maximum six whole-number digits.
+                      if (currentText.length >= 6) return;
+                    }
+
+                    nextText = currentText + key;
+                  }
+
+                  // Separate the whole number from the decimal digits.
+                  final parts = nextText.split('.');
+                  final wholeNumber = parts[0];
+
+                  // Insert commas every three digits.
+                  String formatted = '';
+
+                  for (int i = 0; i < wholeNumber.length; i++) {
+                    if (i > 0 && (wholeNumber.length - i) % 3 == 0) {
+                      formatted += ',';
+                    }
+
+                    formatted += wholeNumber[i];
+                  }
+
+                  // Preserve the decimal point, even before cents are entered.
+                  if (parts.length == 2) {
+                    formatted += '.${parts[1]}';
+                  }
+
+                  setState(() {
+                    amountController.value = TextEditingValue(
+                      text: formatted,
+                      selection: TextSelection.collapsed(
+                        offset: formatted.length,
+                      ),
+                    );
+
+                    selectedamount = null;
+                  });
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: const Color(0xFFFAFBF8),
                   foregroundColor: const Color(0xFF1A1C1C),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(
-                      color: Color(0xFFE4E7E0),
-                    ),
+                    side: const BorderSide(color: Color(0xFFE4E7E0)),
                   ),
                 ),
                 child: key == '⌫'
                     ? const Icon(Icons.backspace_outlined)
                     : Text(
-                  key,
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                        key,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
               );
             },
           ),
@@ -116,14 +175,26 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
       ),
     );
   }
-  int ? selectedamount;
+
+  int? selectedamount;
   final List<String> amount = [r'+$10', r'+$25', r'+50', r'+$100', 'clear'];
   Widget amountButton({required String text, required int index}) {
     final bool isSelected = selectedamount == index;
 
     return TextButton(
       onPressed: () {
+        setState(() {
+          if (text.toLowerCase() == 'clear') {
+            amountController.clear();
+            selectedamount = null;
+          } else {
+            selectedamount = index;
 
+            amountController.text = text
+                .replaceAll('+', '')
+                .replaceAll(r'$', '');
+          }
+        });
       },
       style: TextButton.styleFrom(
         backgroundColor: isSelected ? Colors.black : const Color(0xFFEEEEEE),
@@ -138,6 +209,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -244,8 +316,8 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                   ),
                   Container(
                     width: 390,
-                   // height: 400,
 
+                    // height: 400,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       // mainAxisAlignment: MainAxisAlignment.center,
@@ -415,7 +487,9 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                   decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.black.withValues(alpha: 0.03),
+                                        color: Colors.black.withValues(
+                                          alpha: 0.03,
+                                        ),
                                         blurRadius: 12,
                                         spreadRadius: 2,
                                         offset: const Offset(0, 2),
@@ -429,7 +503,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                       colors: [
                                         Color(0xFFFFFFFF),
                                         Colors.white,
-                                       // Colors.white,
+                                        // Colors.white,
                                         Colors.white.withValues(alpha: 0.0),
 
                                         //Colors.transparent.withValues(alpha: -2.2),
@@ -452,7 +526,7 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                       SizedBox(height: 6),
                                       Expanded(
                                         child: SizedBox(
-                                          width: 130,
+                                          width: 180,
                                           height: 40,
                                           child: TextField(
                                             textAlign: TextAlign.center,
@@ -461,8 +535,8 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                               fontWeight: FontWeight.bold,
                                             ),
 
+                                            controller: amountController,
                                             readOnly: true,
-                                            // controller: amountController,
                                             keyboardType:
                                                 const TextInputType.numberWithOptions(
                                                   decimal: true,
@@ -477,13 +551,13 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                         ),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           TextButton.icon(
                                             onPressed: null,
                                             iconAlignment: IconAlignment.end,
                                             icon: Icon(
-
                                               Icons.circle,
                                               color: Color(0xFF5E5E5E),
                                               size: 12,
@@ -497,50 +571,54 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                             ),
                                           ),
                                           TextButton.icon(
-                                              onPressed: null,
-                                              //iconAlignment: IconAlignment.end,
-                                              icon: Container(
-                                                width: 15,
-                                                height: 15,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFF006D33),
-                                                  borderRadius: BorderRadius.circular(15),
-                                                ),
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Colors.white,
-                                                  size: 12,
-                                                ),
-                                              ), 
-                                              style: TextButton.styleFrom(
-                                                backgroundColor: Color(
-                                                    0xFFC6EADC),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadiusGeometry.circular(12),
-
-                                                )
+                                            onPressed: null,
+                                            //iconAlignment: IconAlignment.end,
+                                            icon: Container(
+                                              width: 15,
+                                              height: 15,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF006D33),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
                                               ),
-                                              label: Text(
-                                                'No conversion fees',
-                                                style: GoogleFonts.jetBrainsMono(
-                                                  fontSize: 14,
-                                                  color: Color(0xFF006D33),
-                                                ),
+                                              child: Icon(
+                                                Icons.check,
+                                                color: Colors.white,
+                                                size: 12,
                                               ),
                                             ),
-
+                                            style: TextButton.styleFrom(
+                                              backgroundColor: Color(
+                                                0xFFC6EADC,
+                                              ),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadiusGeometry.circular(
+                                                      12,
+                                                    ),
+                                              ),
+                                            ),
+                                            label: Text(
+                                              'No conversion fees',
+                                              style: GoogleFonts.jetBrainsMono(
+                                                fontSize: 14,
+                                                color: Color(0xFF006D33),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
-
                                     ],
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(height: 10),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
-                                  children: List.generate(amount.length, (index) {
+                                  children: List.generate(amount.length, (
+                                    index,
+                                  ) {
                                     return Padding(
                                       padding: const EdgeInsets.only(right: 8),
                                       child: amountButton(
@@ -551,8 +629,44 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                   }),
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(height: 10),
                               amountKeypad(),
+                              SizedBox(height: 10),
+                              ElevatedButton.icon(
+                                icon: Icon(
+                                  Icons.arrow_forward,
+                                  color: Color(0xFF5E5E5E),
+                                ),
+                                iconAlignment: IconAlignment.end,
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: Size(350, 56),
+                                  backgroundColor: Color(0xFFE8E8E8),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                onPressed: () {},
+
+                                label: Text(
+                                  'Pay Sarah (\$${amountController.text.isEmpty ? '0.00' : amountController.text})',                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF5E5E5E),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              TextButton.icon(
+                                onPressed: () {},
+                                icon: Icon(Icons.shield,color: Color(0xFF006D33),),
+                                label: Text(
+                                  'FDIC Insured • Bank-grade 256-bit encryption',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF5E5E5E),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
