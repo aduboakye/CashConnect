@@ -166,7 +166,7 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
         title: Text(
           'Elena Rodriguez',
           style: GoogleFonts.hankenGrotesk(
-            fontSize: 20,
+            fontSize: 2,
             color: Color(0xFF1A1C1C),
           ),
         ),
