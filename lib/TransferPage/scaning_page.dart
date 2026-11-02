@@ -634,6 +634,7 @@ class _ScaningPageState extends State<ScaningPage> {
                               ),
                               softWrap: true,
                             ),
+                            Text(r'Avail: $4,250.00',style: GoogleFonts.jetBrainsMono(color: Color(0xFF006D33),fontSize: 12),)
                           ],
                         ),
                       ),
@@ -657,9 +658,9 @@ class _ScaningPageState extends State<ScaningPage> {
                             borderRadius: BorderRadius.circular(8)
                         )
                     ),
-                    icon: Icon(Icons.arrow_forward),
+                    icon: Icon(Icons.arrow_forward,color: Color(0xFF1F1C00)),
                     iconAlignment: IconAlignment.end,
-                    label: Text(r'Request $120.00 Now')),
+                    label: Text(r'Pay $50.00 to Sarah',style: GoogleFonts.hankenGrotesk(fontSize: 20,fontWeight: FontWeight.bold,color: Color(0xFF1F1C00)),),),
                 TextButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.shield,color: Color(0xFF006D33),),
