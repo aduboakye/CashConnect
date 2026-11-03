@@ -144,30 +144,7 @@ class _MultipleTransferState extends State<MultipleTransfer> {
         ),
         centerTitle: true,
       ),
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_forward,color: Colors.black,),
-              iconAlignment: IconAlignment.end,
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(350, 56),
-                backgroundColor: Color(0xFFFAE500),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              label: Text(
-                'Send \$355.00 to 3 People',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
-        ),
+
 
           body: SafeArea(
         child: SingleChildScrollView(
@@ -592,6 +569,31 @@ class _MultipleTransferState extends State<MultipleTransfer> {
                         ],
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 16,),
+                SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.arrow_forward,color: Colors.black,),
+                      iconAlignment: IconAlignment.end,
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(350, 56),
+                        backgroundColor: Color(0xFFFAE500),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      label: Text(
+                        'Send \$355.00 to 3 People',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
