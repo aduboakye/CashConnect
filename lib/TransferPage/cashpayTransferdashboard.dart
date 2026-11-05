@@ -246,6 +246,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                       borderRadius: BorderRadiusGeometry.circular(12),
                       child: Image.asset(image),
                     ),
+                    SizedBox(width: 5,),
                     Flexible(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -922,6 +923,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+
                         children: [
                           cashpaymember(
                             name: 'Sarah',
@@ -1001,6 +1004,28 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                               selectedRecipientName = 'Sarah';
                             },
                           ),
+                          GestureDetector(
+                            onTap: (){},
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  width: 56,
+                                  height: 56,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFEEEEEE),
+                                  ),
+                                  child: const Icon(Icons.add),
+                                ),
+                                const SizedBox(height: 4),
+                                const Text(
+                                  'New',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -1043,10 +1068,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             },
                           ),
                           transferoption(
-                            name: 'Direct Mobile Phone or Email',
+                            name: 'Send multiole transfers',
                             surname:
-                                'Recipient receives instant claim link via SMS',
-                            icon: Icons.contactless_outlined,
+                                'Send multiple transfer to cashpay users',
+                            icon: Icons.call_split,
                             color: Color(0xFFE2E2E2),
                             isSelected: selectedTransfer == 2,
                             onTap: () {

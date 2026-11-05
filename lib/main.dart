@@ -2,6 +2,7 @@ import 'package:cashconnect_fanancial_suite/Bussines%20ads%20hub/bussinesAds_pag
 import 'package:cashconnect_fanancial_suite/Expense%20Analytics/Expense_analytics_page.dart';
 import 'package:cashconnect_fanancial_suite/Messaging%20and%20support/messaging_page.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/cashpay_request_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/confirm_transfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/multiple_transfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/sucessful_transfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/transfer_Page.dart';
@@ -22,6 +23,8 @@ import 'package:cashconnect_fanancial_suite/TransferPage/scaning_page.dart';
 //import 'package:cashconnect_fanancial_suite/TransferPage/multiple_transfer.dart';
 import 'package:cashconnect_fanancial_suite/Susu_page/create_susuAccount.dart';
 //import 'package:cashconnect_fanancial_suite/TransferPage/sucessful_transfer.dart';
+//import 'package:cashconnect_fanancial_suite/TransferPage/confirm_transfer.dart;
+
 
 
 
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  SucessfulTransfer(),
+      home: const  Cashpaytransferdashboard(),
     );
   }
 }
