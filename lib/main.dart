@@ -5,6 +5,7 @@ import 'package:cashconnect_fanancial_suite/TransferPage/add_members.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/cashpay_request_page.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/confirm_transfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/multiple_transfer.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/search_members.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/sucessful_transfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/transfer_Page.dart';
 import 'package:cashconnect_fanancial_suite/loans%20and%20credit/loan_and_credit.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  AddMembers(),
+      home: const  SearchMembers(),
     );
   }
 }
