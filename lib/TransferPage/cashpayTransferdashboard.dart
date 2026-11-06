@@ -753,7 +753,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
               ),
               SizedBox(height: 24),
               Container(
-                width: 350,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   //border: Border.all(width: 1),
@@ -761,20 +761,53 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                 ),
                 padding: EdgeInsetsGeometry.symmetric(
                   vertical: 16,
-                  horizontal: 16,
+                  horizontal: 2,
                 ),
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'SEND AMOUNT',
-                          style: GoogleFonts.jetBrainsMono(
-                            fontSize: 11,
-                            color: Color(0xFF3C4A3D),
+                        Expanded(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  child: Image.asset('images/border.png',width: 24,height: 24,),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                SizedBox(width: 2,),
+
+                                Text(
+                                  'Paying',
+                                  style: GoogleFonts.jetBrainsMono(
+                                    fontSize: 11,
+                                    color: Color(0xFF3C4A3D),
+                                  ),
+
+                                ),
+                                SizedBox(width: 1,),
+                                Flexible(
+                                  child: Text(
+                                    'Sarah Jenkins',
+                                    style: GoogleFonts.jetBrainsMono(
+                                      fontSize: 12,
+
+                                      color: Color(0xFF3C4A3D),
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+
+                                  ),
+                                ),
+                                Icon(Icons.verified,color: Color(0xFF006D33),)
+                              ],
+                            ),
                           ),
                         ),
+                        const SizedBox(width: 8), // Gap between the two groups.
+
                         SizedBox(
                           width: 160,
                           height: 21,
@@ -825,7 +858,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   height: 40,
                                   child: TextField(
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
+
 
                                     readOnly: true,
                                     controller: amountController,
@@ -835,6 +869,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                         ),
                                     decoration: const InputDecoration(
                                       hintText: '0.00',
+                                      border: InputBorder.none
                                     ),
                                   ),
                                 ),
