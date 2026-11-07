@@ -376,190 +376,192 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                   ],
                 ),
                 SizedBox(height: 24),
-                Container(
-                  width: 350,
-                  //height: 258.13,
-                  padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                TextButton.icon(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: Color(0xFF00D66B),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadiusGeometry.circular(12),
+                Center(
+                  child: Container(
+                    width: 350,
+                    //height: 258.13,
+                    padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Row(
+                                children: [
+                                  TextButton.icon(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Color(0xFF00D66B),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusGeometry.circular(12),
+                                      ),
+                                    ),
+                                    icon: Icon(Icons.auto_awesome),
+                                    label: Text(
+                                      'CashPay AI',
+                                      style: GoogleFonts.hankenGrotesk(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF006D33),
+                                      ),
                                     ),
                                   ),
-                                  icon: Icon(Icons.auto_awesome),
-                                  label: Text(
-                                    'CashPay AI',
-                                    style: GoogleFonts.hankenGrotesk(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF006D33),
-                                    ),
-                                  ),
-                                ),
-                                TextButton.icon(
-                                  onPressed: () {},
+                                  TextButton.icon(
+                                    onPressed: () {},
 
-                                  icon: Icon(
-                                    Icons.circle,
-                                    color: Color(0xFF00D66B),
-                                  ),
-                                  label: Text(
-                                    'Active',
-                                    style: GoogleFonts.hankenGrotesk(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF006D33),
+                                    icon: Icon(
+                                      Icons.circle,
+                                      color: Color(0xFF00D66B),
+                                    ),
+                                    label: Text(
+                                      'Active',
+                                      style: GoogleFonts.hankenGrotesk(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF006D33),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.tune)),
-                        ],
-                      ),
-                      SizedBox(height: 12),
-                      Container(
-                        width: 298.5,
-                        //height: 77.63,
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 12,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Color(0xFFF3F3F4),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Icon(
-                                Icons.insights,
-                                color: Color(0xFF006D33),
+                                ],
                               ),
                             ),
-                            SizedBox(width: 2),
+                            IconButton(onPressed: () {}, icon: Icon(Icons.tune)),
+                          ],
+                        ),
+                        SizedBox(height: 12),
+                        Container(
+                          width: 298.5,
+                          //height: 77.63,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 12,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xFFF3F3F4),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Icon(
+                                  Icons.insights,
+                                  color: Color(0xFF006D33),
+                                ),
+                              ),
+                              SizedBox(width: 2),
+                              Expanded(
+                                child: Text.rich(
+                                  TextSpan(
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.black87,
+                                      height: 1.4, // line spacing
+                                    ),
+                                    children: [
+                                      const TextSpan(
+                                        text: 'Smart Spend Insight: ',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const TextSpan(text: 'You have '),
+                                      const TextSpan(
+                                        text: '\$320',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              Colors.redAccent, // money going out
+                                        ),
+                                      ),
+                                      const TextSpan(
+                                        text:
+                                            ' in recurring subscriptions due this week. ',
+                                      ),
+                                      const TextSpan(
+                                        text: 'Projected month-end surplus is ',
+                                      ),
+                                      const TextSpan(
+                                        text: '\$1,850',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.green, // money saved
+                                        ),
+                                      ),
+                                      const TextSpan(text: '.'),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
                             Expanded(
-                              child: Text.rich(
-                                TextSpan(
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black87,
-                                    height: 1.4, // line spacing
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  filled: true, // needed for fillColor to show
+                                  fillColor: const Color(0xFFF3F3F4),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Image.asset(
+                                      'images/Margin.png',
+                                      width: 50, // was 16 (and the empty value)
+                                      height: 24,
+                                      fit: BoxFit
+                                          .contain, // keeps it from stretching
+                                    ),
                                   ),
-                                  children: [
-                                    const TextSpan(
-                                      text: 'Smart Spend Insight: ',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const TextSpan(text: 'You have '),
-                                    const TextSpan(
-                                      text: '\$320',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Colors.redAccent, // money going out
-                                      ),
-                                    ),
-                                    const TextSpan(
-                                      text:
-                                          ' in recurring subscriptions due this week. ',
-                                    ),
-                                    const TextSpan(
-                                      text: 'Projected month-end surplus is ',
-                                    ),
-                                    const TextSpan(
-                                      text: '\$1,850',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.green, // money saved
-                                      ),
-                                    ),
-                                    const TextSpan(text: '.'),
-                                  ],
+                                  prefixIconConstraints: const BoxConstraints(
+                                    minWidth: 32,
+                                    minHeight: 32,
+                                  ),
+                                  hintText: 'Ask AI',
+                                  hintStyle: GoogleFonts.hankenGrotesk(
+                                    color: const Color(0xFF3C4A3D),
+                                    fontSize: 12,
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 6,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
                                 ),
                               ),
                             ),
+                            const SizedBox(width: 8),
+                            //_actionButton(icon1: Icons.arrow_upward),
+                            _actionButton(icon1: Icons.arrow_upward, icon2: Icons.keyboard_voice)
+                           // const SizedBox(width: 4),
+                           // _actionButton(Icons.keyboard_voice),
                           ],
                         ),
-                      ),
-                      SizedBox(height: 12),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                isDense: true,
-                                filled: true, // needed for fillColor to show
-                                fillColor: const Color(0xFFF3F3F4),
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Image.asset(
-                                    'images/Margin.png',
-                                    width: 50, // was 16 (and the empty value)
-                                    height: 24,
-                                    fit: BoxFit
-                                        .contain, // keeps it from stretching
-                                  ),
-                                ),
-                                prefixIconConstraints: const BoxConstraints(
-                                  minWidth: 32,
-                                  minHeight: 32,
-                                ),
-                                hintText: 'Ask AI',
-                                hintStyle: GoogleFonts.hankenGrotesk(
-                                  color: const Color(0xFF3C4A3D),
-                                  fontSize: 12,
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 6,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
-                            ),
+                        SizedBox(height: 12,),
+                        SizedBox(
+                          height: 40,   // required: set this to your button's height
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            children: [
+                              textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
+                              const SizedBox(width: 8),
+                              textbutton(text: 'Forecast Cashflow', icon: Icons.trending_up),
+                              const SizedBox(width: 8),
+                              textbutton(text: r'Save Extra $100', icon: Icons.savings),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          //_actionButton(icon1: Icons.arrow_upward),
-                          _actionButton(icon1: Icons.arrow_upward, icon2: Icons.keyboard_voice)
-                         // const SizedBox(width: 4),
-                         // _actionButton(Icons.keyboard_voice),
-                        ],
-                      ),
-                      SizedBox(height: 12,),
-                      SizedBox(
-                        height: 40,   // required: set this to your button's height
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          children: [
-                            textbutton(text: 'Audit Subscriptions', icon: Icons.checklist),
-                            const SizedBox(width: 8),
-                            textbutton(text: 'Forecast Cashflow', icon: Icons.trending_up),
-                            const SizedBox(width: 8),
-                            textbutton(text: r'Save Extra $100', icon: Icons.savings),
-                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 24),
