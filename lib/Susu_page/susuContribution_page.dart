@@ -501,7 +501,7 @@ class SusucontributionPage extends StatelessWidget {
                     SizedBox(height: 24),
                     Container(
                       width: 302,
-                      height: 250,
+                      height: 210,
                       child: GridView.count(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
@@ -603,6 +603,349 @@ class SusucontributionPage extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+              SizedBox(height: 24,),
+              GestureDetector(
+                onTap: (){},
+                child: Container(
+                  width: 350,
+                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(8),
+
+                  ),
+                  child: Column(
+                    children: [
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          Text(
+                            'PAYMENT SOURCE',
+                            style: GoogleFonts.jetBrainsMono(
+                              color: Color(0xFF5E5E5E),
+                              fontSize: 11,
+                            ),
+                          ),
+
+                          Container(
+                            child: Row(
+                              children: [
+                                Icon(Icons.bolt_outlined,color: Color(0xFF006D33),),
+                                Text(
+                                  'Instant',
+                                  style: GoogleFonts.jetBrainsMono(
+                                    color: Color(0xFF006D33),
+                                    fontSize: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12,),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Color(0xFF2F3131),
+                            ),
+                            child: Icon(
+                              Icons.account_balance,
+                              color: Color(0xFF63FF94),
+                            ),
+                          ),
+                          SizedBox(width: 4),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Chase Premier Checking . 4921',
+                                style: GoogleFonts.hankenGrotesk(
+                                  color: Color(0xFF1A1C1C),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold
+                                ),
+
+                              ),
+                              Text(
+                                'Avail: \$4,250.00 • No fees',
+                                style: GoogleFonts.hankenGrotesk(
+                                  color: Color(0xFF5E5E5E),
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                         SizedBox(width: 4),
+                          Flexible(
+                            child: Container(
+                              width: 66,
+                              height: 32,
+                              decoration: BoxDecoration(
+                                color: Color(0x4DE2E2E2),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child:  Center(
+                                child: Text(
+                                  'Change',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF1A1C1C),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 24,),
+              Container(
+                width: 350,
+                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Color(0xFFFFFFFF),
+                ),
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'NOTE & REFERENCE',
+                      style: GoogleFonts.hankenGrotesk(
+                          color: Color(0xFF5E5E5E),
+                          fontSize: 11,
+                        //  fontWeight: FontWeight.bold
+                      ),
+
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Color(0xFFF3F3F4),
+                      ),
+                      child: Row(
+                        children: [
+                          Text('🏠',style: TextStyle(fontSize: 16),),
+                          Text(
+                            'Rent & Internet contribution (Nov)',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF1A1C1C),
+                              fontSize: 16,
+                            ),
+                          ),
+                          Icon(Icons.edit)
+                        ],
+                      )
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 24,),
+              Container(
+                width: 350,
+                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Color(0xFFF3F3F4),
+                ),
+                child:Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.account_tree_outlined,
+                          color: Color(0xFF006D33),
+                          size: 22,
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Pool Transparency Protocol',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF006D33),
+                              fontSize: 16,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12,),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle_outline,
+                          color: Color(0xFF006D33),
+                          size: 16,
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Funds go directly into the locked Suite 402 Pool ledger balance.',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF3C4A3D),
+                              fontSize: 12,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle_outline,
+                          color: Color(0xFF006D33),
+                          size: 16,
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Instant settlement with \$0.00 service or transfer costs.',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF3C4A3D),
+                              fontSize: 12,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.check_circle_outline,
+                          color: Color(0xFF006D33),
+                          size: 16,
+                        ),
+                        SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Sarah, Elena, and Michael receive immediate receipt updates in-app.',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF3C4A3D),
+                              fontSize: 12,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ),
+              SizedBox(height: 24,),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                     Icon(
+                        Icons.verified_outlined,
+                        color: Color(0xFF006D33),
+                     ),
+                    SizedBox(width: 4),
+
+                        Expanded(
+                          child: Text(
+                            '256-Bit Bank-Grade Encryption • FDIC Insured Partner Bank',
+                            style: GoogleFonts.jetBrainsMono(
+                              color: Color(0xFF5E5E5E),
+                              fontSize: 11,
+                            ),
+                          ),
+                        ),
+
+
+                  ],
+                ),
+              ),
+              SizedBox(height: 24,),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Container(
+                  height:120,
+                  padding: EdgeInsets.symmetric(horizontal: 24,),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  child: Column(
+                    children: [
+                      SafeArea(
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.arrow_forward,color: Colors.black,),
+                            iconAlignment: IconAlignment.end,
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: Size(350, 56),
+                              backgroundColor: Color(0xFFFAE500),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            label: Text(
+                              'Send \$200.00 to Group Pool',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          Text(
+                            'Request Due Date Extension',
+                            style: TextStyle(
+                              color: Color(0xFF5E5E5E),
+                              fontSize: 11,
+                            ),
+                          ),
+                          Text(
+                            'Decline or Leave Pool',
+                            style: TextStyle(
+                              color: Color(0xFFBA1A1A),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
