@@ -28,6 +28,7 @@ import 'package:cashconnect_fanancial_suite/TransferPage/scaning_page.dart';
 import 'package:cashconnect_fanancial_suite/Susu_page/create_susuAccount.dart';
 //import 'package:cashconnect_fanancial_suite/TransferPage/sucessful_transfer.dart';
 //import 'package:cashconnect_fanancial_suite/TransferPage/confirm_transfer.dart;
+import 'package:cashconnect_fanancial_suite/TransferPage/complete_multipleTransfer.dart';
 
 
 
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  AddBatchtransfer(),
+      home: const  CompleteMultipletransfer(),
     );
   }
 }
