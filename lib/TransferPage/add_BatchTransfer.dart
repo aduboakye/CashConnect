@@ -32,12 +32,12 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
         width: 350,
         // height: 200,
         padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 12),
-        decoration: BoxDecoration(
+        /* decoration: BoxDecoration(
           border: Border.all(
             color: isSelected ? const Color(0xFF006D33) : Colors.transparent,
           ),
           borderRadius: BorderRadius.circular(12),
-        ),
+        ),*/
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
 
@@ -49,9 +49,37 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadiusGeometry.circular(12),
-                      child: Image.asset(image),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: isSelected
+                              ? const Color(0xFF006D33)
+                              : Colors.transparent,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadiusGeometry.circular(12),
+                            child: Image.asset(image),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Icon(
+                              isSelected
+                                  ? Icons.check_circle
+                                  : Icons.circle,
+                              size: 20,
+                              color: isSelected
+                                  ? Color(0xFF00D66B)
+                                  : Color(0xFFC6C6C6),
+                            ),
+                          ),
+
+                        ],
+                      ),
                     ),
                     SizedBox(width: 5),
                     Flexible(
@@ -125,26 +153,23 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
             SizedBox(width: 10),
             TextButton.icon(
               onPressed: onTap,
-              style: IconButton.styleFrom(
+              style: TextButton.styleFrom(
                 backgroundColor: isSelected
-                    ? const Color(0xFF006D33)
-                    : const Color(0xFFE8E8E8),
+                    ? Color(0xFF006D33)
+                    : Color(0xFFE8E8E8),
                 foregroundColor: isSelected
-                    ? Color(0xFF1A1C1C) //Colors.white
-                    : const Color(0xFF1A1C1C),
+                    ? Colors.white
+                    : Color(0xFF1A1C1C),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(8),
+                  borderRadius: BorderRadius.circular(8),
                 ),
+              ),
+              icon: Icon(
+                isSelected ? Icons.check : Icons.add,
               ),
               label: Text(
-                isSelected ? 'Selected' : 'Select',
-                style: GoogleFonts.hankenGrotesk(
-                  fontSize: 11,
-                  color: Color(0xFF1A1C1C),
-                ),
+                isSelected ? 'Added' : 'Add',
               ),
-              icon: isSelected ? Icon(Icons.check) : Icon(Icons.chevron_right),
-              iconAlignment: IconAlignment.end,
             ),
           ],
         ),
@@ -301,6 +326,48 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 120,
+          padding: EdgeInsets.only(right: 16, left: 16, top: 16),
+          decoration: BoxDecoration(color: Color(0xFFFFFFFF)),
+          child: Column(
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.arrow_forward, color: Color(0xFF1F1C00)),
+                iconAlignment: IconAlignment.end,
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(350, 56),
+                  backgroundColor: Color(0xFFFAE500),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                label: Text(
+                  r'Add Selected to Batch (3)',
+                  style: GoogleFonts.hankenGrotesk(
+                    color: Color(0xFF1F1C00),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.shield, color: Color(0xFF006D33)),
+                label: Text(
+                  '256-Bit Bank-Grade P2P Encryption · Zero Transfer Fee',
+                  style: GoogleFonts.hankenGrotesk(
+                    fontSize: 11,
+                    color: Color(0xFF3C4A3D),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -580,7 +647,7 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Suggested & Recent',
+                          'Recent Contacts',
                           style: GoogleFonts.hankenGrotesk(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -588,11 +655,11 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                           ),
                         ),
                         Text(
-                          '5 Contacts Found',
+                          'See All (14)',
                           style: GoogleFonts.hankenGrotesk(
-                            fontSize: 12,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF1A1C1C),
+                            color: Color(0xFF006D33),
                           ),
                         ),
                       ],
@@ -606,10 +673,15 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                       icon: Icons.verified,
                       subtitle1: 'chloe.b@design.io',
                       isSelected: selectedMember == 0,
+                      // First member
+
                       onTap: () {
-                        setState(() => selectedMember = 0);
-                        selectedcashpayMember = null;
-                        selectedRecipientName = 'Sarah';
+                        setState(() {
+                          selectedMember = selectedMember == 0 ? null : 0;
+                          selectedcashpayMember = null;
+                          selectedRecipientName =
+                          selectedMember == 0 ? 'Sarah' : null;
+                        });
                       },
                     ),
                     recent(
@@ -619,12 +691,16 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                       image: 'images/cashpaym1.png',
                       icon: Icons.verified,
                       subtitle1: 'chloe.b@design.io',
-                      isSelected: selectedMember == 2,
-                      onTap: () {
-                        setState(() => selectedMember = 2);
-                        selectedcashpayMember = null;
-                        selectedRecipientName = 'Sarah';
-                      },
+                        // Second member
+                        isSelected: selectedMember == 2,
+                        onTap: () {
+                          setState(() {
+                            selectedMember = selectedMember == 2 ? null : 2;
+                            selectedcashpayMember = null;
+                            selectedRecipientName =
+                            selectedMember == 2 ? 'Sarah' : null;
+                          });
+                        },
                     ),
                     recent(
                       title: 'Sarah Jenkins',
@@ -633,11 +709,15 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                       image: 'images/cashpaym1.png',
                       icon: Icons.verified,
                       subtitle1: 'chloe.b@design.io',
+                      // Third member
                       isSelected: selectedMember == 1,
                       onTap: () {
-                        setState(() => selectedMember = 1);
-                        selectedcashpayMember = null;
-                        selectedRecipientName = 'Sarah';
+                        setState(() {
+                          selectedMember = selectedMember == 1 ? null : 1;
+                          selectedcashpayMember = null;
+                          selectedRecipientName =
+                          selectedMember == 1 ? 'Sarah' : null;
+                        });
                       },
                     ),
                     recent(
@@ -647,11 +727,15 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                       image: 'images/cashpaym1.png',
                       icon: Icons.verified,
                       subtitle1: 'chloe.b@design.io',
+                      // Fourth member
                       isSelected: selectedMember == 3,
                       onTap: () {
-                        setState(() => selectedMember = 3);
-                        selectedcashpayMember = null;
-                        selectedRecipientName = 'Sarah';
+                        setState(() {
+                          selectedMember = selectedMember == 3 ? null : 3;
+                          selectedcashpayMember = null;
+                          selectedRecipientName =
+                          selectedMember == 3 ? 'Sarah' : null;
+                        });
                       },
                     ),
                   ],
@@ -681,7 +765,10 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                               color: Color(0xFFEEEEEE),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child:  Icon(Icons.person_add_alt,color: Color(0xFF006D33),),
+                            child: Icon(
+                              Icons.person_add_alt,
+                              color: Color(0xFF006D33),
+                            ),
                           ),
                           SizedBox(width: 5),
                           Column(
@@ -722,7 +809,7 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.add_call,color: Color(0xFF006D33),),
+                              Icon(Icons.add_call, color: Color(0xFF006D33)),
                               Text(
                                 '+ Enter Mobile Number or Email',
                                 style: GoogleFonts.hankenGrotesk(
@@ -735,14 +822,17 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 12,),
+                      SizedBox(height: 12),
                       Container(
                         width: 322,
                         height: 48,
-                        padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Color(0xFFF3F3F4),
-                          borderRadius: BorderRadius.circular(4)
+                          borderRadius: BorderRadius.circular(4),
                         ),
                         alignment: Alignment.center,
                         child: Row(
@@ -752,7 +842,7 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.link,color: Color(0xFF6C7B6C),),
+                                  Icon(Icons.link, color: Color(0xFF6C7B6C)),
                                   Text(
                                     'cashpay.me/invite/batch-join',
                                     style: GoogleFonts.hankenGrotesk(
@@ -764,16 +854,21 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                                 ],
                               ),
                             ),
-                            TextButton.icon(onPressed: (){}, 
-                              icon: Icon(Icons.content_copy_outlined,color: Color(0xFF006D33),),
-                              label:Text(
-                              'Copy',
-                              style: GoogleFonts.hankenGrotesk(
+                            TextButton.icon(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.content_copy_outlined,
                                 color: Color(0xFF006D33),
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
                               ),
-                            ),)
+                              label: Text(
+                                'Copy',
+                                style: GoogleFonts.hankenGrotesk(
+                                  color: Color(0xFF006D33),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
