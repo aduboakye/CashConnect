@@ -11,14 +11,109 @@ class SplitpaymentPage extends StatefulWidget {
 }
 
 class _SplitpaymentPageState extends State<SplitpaymentPage> {
+  bool isEnabled = true;
+  final List<String> description = [
+    'Dinner & Drinks',
+    'Groceries',
+    'Rideshare',
+  ];
+
+  int selecteddescription = 0;
+
+  Widget descriptionanalysis() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(description.length, (index) {
+        final bool isSelected = selecteddescription == index;
+
+        return Padding(
+          padding: EdgeInsets.only(
+            right: index == description.length - 1 ? 0 : 8,
+          ),
+          child: TextButton(
+            onPressed: () {
+              setState(() {
+                selecteddescription = index;
+              });
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              backgroundColor: isSelected
+                  ? const Color(0xFFFFFFFF)
+                  : const Color(0xFFEEEEEE),
+              foregroundColor: isSelected
+                  ? const Color(0xFF006D33)
+                  : const Color(0xFF5E5E5E),
+              side: BorderSide(
+                color: isSelected
+                    ? const Color(0xFF006D33)
+                    : Colors.transparent,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: Text(
+              description[index],
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+  final List<String> paymentdecison = ['Equally', 'Exact', 'Share %', 'Items'];
+
+  int selectedDecision = 0;
+
+  Widget amountdecison() {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEEEEEE),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: List.generate(paymentdecison.length, (index) {
+          final bool isSelected = selectedDecision == index;
+
+          return Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    selectedDecision = index;
+                  });
+                },
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  backgroundColor: isSelected
+                      ? const Color(0xFFFFFFFF)
+                      : const Color(0xFFEEEEEE),
+                  foregroundColor: isSelected
+                      ? const Color(0xFF006D33)
+                      : const Color(0xFF5E5E5E),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
+                child: Text(paymentdecison[index], textAlign: TextAlign.center),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
   List<String> amount = ['%5', '%10', '%15', '%20'];
   Widget subamount() {
     return Row(
       children: List.generate(amount.length, (index) {
         return Padding(
-          padding: EdgeInsets.only(
-            right: index == amount.length - 1 ? 0 : 10,
-          ),
+          padding: EdgeInsets.only(right: index == amount.length - 1 ? 0 : 10),
           child: TextButton(
             onPressed: () {},
             style: TextButton.styleFrom(
@@ -460,25 +555,20 @@ class _SplitpaymentPageState extends State<SplitpaymentPage> {
                                 ),
                                 SizedBox(height: 3),
                                 Row(
-
                                   children: [
                                     Text(
                                       'Tip / Fee:',
                                       style: GoogleFonts.hankenGrotesk(
                                         color: Color(0xFFE2E2E2),
                                         fontSize: 15,
-                                        fontWeight: FontWeight.bold
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
 
                                     Flexible(
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          children: [
-                                            subamount(),
-                                          ],
-                                        ),
+                                        child: Row(children: [subamount()]),
                                       ),
                                     ),
                                   ],
@@ -491,6 +581,357 @@ class _SplitpaymentPageState extends State<SplitpaymentPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 16),
+                Container(
+                  width: 350,
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'SPLIT METHOD',
+                            style: GoogleFonts.hankenGrotesk(
+                              fontSize: 12,
+                              color: Color(0xFF3C4A3D),
+                            ),
+                          ),
+                          Text(
+                            'Split evenly 50/50',
+                            style: GoogleFonts.jetBrainsMono(
+                              fontSize: 12,
+                              color: Color(0xFF006D33),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 4,
+                          horizontal: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: amountdecison(),
+                      ),
+                      SizedBox(height: 12),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF3F3F4),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 36,
+                                    height: 36,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color(0xFFEEEEEE),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'You',
+                                        style: GoogleFonts.hankenGrotesk(
+                                          color: Color(0xFF1A1C1C),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Your portion',
+                                        style: GoogleFonts.hankenGrotesk(
+                                          color: Color(0xFF1A1C1C),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '50.0% of final',
+                                        style: GoogleFonts.jetBrainsMono(
+                                          color: Color(0xFF5E5E5E),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '\$75.81',
+                                  style: GoogleFonts.jetBrainsMono(
+                                    color: Color(0xFF1A1C1C),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Paid by card',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF5E5E5E),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFC6EADC),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 36,
+                                    height: 36,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Color(0xFF006D33),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'SJ',
+                                        style: GoogleFonts.hankenGrotesk(
+                                          color: Color(0xFFFFFFFF),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Your portion',
+                                        style: GoogleFonts.hankenGrotesk(
+                                          color: Color(0xFF1A1C1C),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        'To be requested',
+                                        style: GoogleFonts.jetBrainsMono(
+                                          color: Color(0xFF006D33),
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '\$75.81',
+                                  style: GoogleFonts.jetBrainsMono(
+                                    color: Color(0xFF006D33),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Immediate push',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF006D33),
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  width: 350,
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  decoration: BoxDecoration(color: Color(0xFFFFFFFF)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'EXPENSE DETAILS',
+                        style: GoogleFonts.hankenGrotesk(
+                          color: Color(0xFF3C4A3D),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: descriptionanalysis(),
+                      ),
+                      SizedBox(height: 12),
+                      SizedBox(
+                        width: 318,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.edit_note),
+                            hintText: 'Dinner at Nobu Downtown',
+                            hintStyle: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF1A1C1C),
+                              fontSize: 14,
+                            ),
+                            filled: true,
+                            fillColor: const Color(0xFFF3F3F4),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: const Color(0xFF006D33),
+                            ),
+                            child: Text(
+                              'SJ',
+                              style: GoogleFonts.hankenGrotesk(
+                                color: const Color(0xFFFFFFFF),
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(width: 10),
+
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Instant Request Push',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: const Color(0xFF1A1C1C),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Sends Sarah prompt via CashPay & SMS',
+                                  style: GoogleFonts.jetBrainsMono(
+                                    color: const Color(0xFF3C4A3D),
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(width: 8),
+
+                          Switch(
+                            value: isEnabled,
+                            activeTrackColor: const Color(0xFF006D33),
+                            activeThumbColor: Colors.white,
+                            inactiveTrackColor: const Color(0xFFEEEEEE),
+                            inactiveThumbColor: Colors.white,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                isEnabled = newValue;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 26),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFFAE500),
+                    fixedSize: Size(350, 56),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.send, size: 16, color: Color(0xFF1F1C00)),
+SizedBox(width: 8,),
+                      Text(
+                        "Request \$75.81 from Sarah",
+                        style: GoogleFonts.hankenGrotesk(
+                          fontSize: 16,
+                          color: Color(0xFF1F1C00),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 8,),
+
+                      Icon(
+                        Icons.arrow_forward,
+                        size: 16,
+                        color: Color(0xFF1F1C00),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10,),
+                TextButton(onPressed: (){}, child: Text(
+                  "Save Draft & Edit Later",
+                  style: GoogleFonts.hankenGrotesk(
+                    fontSize: 14,
+                    color: Color(0xFF5E5E5E),
+                    //fontWeight: FontWeight.bold,
+                  ),
+                ),)
               ],
             ),
           ),
