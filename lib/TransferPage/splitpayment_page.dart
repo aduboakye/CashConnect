@@ -904,7 +904,7 @@ class _SplitpaymentPageState extends State<SplitpaymentPage> {
                   child: Row(
                     children: [
                       Icon(Icons.send, size: 16, color: Color(0xFF1F1C00)),
-SizedBox(width: 8,),
+                      SizedBox(width: 8),
                       Text(
                         "Request \$75.81 from Sarah",
                         style: GoogleFonts.hankenGrotesk(
@@ -913,7 +913,7 @@ SizedBox(width: 8,),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 8,),
+                      SizedBox(width: 8),
 
                       Icon(
                         Icons.arrow_forward,
@@ -923,15 +923,18 @@ SizedBox(width: 8,),
                     ],
                   ),
                 ),
-                SizedBox(height: 10,),
-                TextButton(onPressed: (){}, child: Text(
-                  "Save Draft & Edit Later",
-                  style: GoogleFonts.hankenGrotesk(
-                    fontSize: 14,
-                    color: Color(0xFF5E5E5E),
-                    //fontWeight: FontWeight.bold,
+                SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Save Draft & Edit Later",
+                    style: GoogleFonts.hankenGrotesk(
+                      fontSize: 14,
+                      color: Color(0xFF5E5E5E),
+                      //fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),)
+                ),
               ],
             ),
           ),
