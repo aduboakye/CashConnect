@@ -1,3 +1,10 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpay_request_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/scaning_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/scheduleAutopay_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/splitpayment_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/transferKeyboard_page.dart';
+import 'package:cashconnect_fanancial_suite/cashpay%20Dashboard/cashpay_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -160,7 +167,9 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Cashpaytransferdashboard()));
+          },
           icon: Icon(Icons.arrow_back, color: Color(0xFF006D33)),
         ),
         title: Text(
@@ -548,7 +557,10 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> TransferkeyboardPage()));
+
+                              },
                               icon: Icon(
                                 Icons.arrow_upward,
                                 color: Color(0xFF1F1C00),
@@ -570,7 +582,9 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                               ),
                             ),
                             TextButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> CashpayRequestPage()));
+                              },
                               icon: Icon(
                                 Icons.arrow_downward,
                                 color: Color(0xFF006D33),
@@ -620,7 +634,10 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                                         color: Color(0xFFEEEEEE),
                                       ),
                                       child: IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> SplitpaymentPage()));
+
+                                        },
                                         icon: Icon(Icons.call_split),
                                       ),
                                     ),
@@ -658,7 +675,10 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                                         color: Color(0xFFEEEEEE),
                                       ),
                                       child: IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ScheduleautopayPage()));
+
+                                        },
                                         icon: Icon(Icons.update),
                                       ),
                                     ),
@@ -697,7 +717,10 @@ class _ReceivertransferPageState extends State<ReceivertransferPage> {
                                         color: Color(0xFFEEEEEE),
                                       ),
                                       child: IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=> ScaningPage()));
+
+                                        },
                                         icon: Icon(Icons.qr_code_2),
                                       ),
                                     ),

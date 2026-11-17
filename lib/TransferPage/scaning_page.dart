@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+
 
 class ScaningPage extends StatefulWidget {
   const ScaningPage({super.key});
@@ -169,7 +171,9 @@ class _ScaningPageState extends State<ScaningPage> {
       appBar: AppBar(
         leading: Row(
           children: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+            IconButton(onPressed: () {
+              Navigator.pop(context);
+            }, icon: Icon(Icons.arrow_back)),
             SizedBox(width: 14),
             Text(
               'Scan & Pay',

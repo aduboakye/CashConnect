@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cashconnect_fanancial_suite/TransferPage/complete_multipleTransfer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -265,7 +266,10 @@ class ConfirmMultipletransfer extends StatelessWidget {
           child: Column(
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> CompleteMultipletransfer()));
+
+                },
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(350, 56),
                   backgroundColor: const Color(0xFFFAE500),
@@ -338,7 +342,10 @@ class ConfirmMultipletransfer extends StatelessWidget {
                         color: Color(0xFFEEEEEE),
                       ),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+
+                        },
                         icon: Icon(Icons.arrow_back),
                         color: Color(0xFF1A1C1C),
                       ),

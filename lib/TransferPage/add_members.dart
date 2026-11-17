@@ -1,3 +1,4 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,7 +10,9 @@ class AddMembers extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>  Cashpaytransferdashboard()));
+          },
           icon: Icon(Icons.arrow_back, color: Color(0xFF006D33)),
         ),
         title: Text(

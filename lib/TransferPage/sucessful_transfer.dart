@@ -1,3 +1,4 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -187,7 +188,10 @@ class _SucessfulTransferState extends State<SucessfulTransfer> {
                   width: 348,
                   padding: EdgeInsets.only(top: 62),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Cashpaytransferdashboard()));
+
+                    },
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(348, 60),
                       backgroundColor: Color(0xFFFAE500),

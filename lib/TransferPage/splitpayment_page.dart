@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cashconnect_fanancial_suite/TransferPage/receiverTransfer_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -144,7 +145,10 @@ class _SplitpaymentPageState extends State<SplitpaymentPage> {
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+              IconButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ReceivertransferPage()));
+
+              }, icon: Icon(Icons.arrow_back)),
               Text(
                 'Split Bill',
                 style: GoogleFonts.hankenGrotesk(

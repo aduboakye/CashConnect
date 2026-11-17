@@ -1,3 +1,6 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/add_members.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/multiple_transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -334,7 +337,10 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
           child: Column(
             children: [
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MultipleTransfer()));
+
+                },
                 icon: Icon(Icons.arrow_forward, color: Color(0xFF1F1C00)),
                 iconAlignment: IconAlignment.end,
                 style: ElevatedButton.styleFrom(
@@ -390,7 +396,10 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                             child: Row(
                               children: [
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Cashpaytransferdashboard()));
+
+                                  },
                                   icon: Icon(Icons.arrow_back),
                                 ),
                                 Text(
@@ -795,30 +804,36 @@ class _AddBatchtransferState extends State<AddBatchtransfer> {
                         ],
                       ),
                       SizedBox(height: 12),
-                      DottedBorder(
-                        options: RoundedRectDottedBorderOptions(
-                          radius: Radius.circular(12),
-                          dashPattern: [8, 4],
-                          strokeWidth: 2,
-                          color: Color(0xFF6C7B6C),
-                        ),
-                        child: Container(
-                          width: 322,
-                          height: 38,
-                          alignment: Alignment.center,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.add_call, color: Color(0xFF006D33)),
-                              Text(
-                                '+ Enter Mobile Number or Email',
-                                style: GoogleFonts.hankenGrotesk(
-                                  color: Color(0xFF1A1C1C),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AddMembers()));
+
+                        },
+                        child: DottedBorder(
+                          options: RoundedRectDottedBorderOptions(
+                            radius: Radius.circular(12),
+                            dashPattern: [8, 4],
+                            strokeWidth: 2,
+                            color: Color(0xFF6C7B6C),
+                          ),
+                          child: Container(
+                            width: 322,
+                            height: 38,
+                            alignment: Alignment.center,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add_call, color: Color(0xFF006D33)),
+                                Text(
+                                  '+ Enter Mobile Number or Email',
+                                  style: GoogleFonts.hankenGrotesk(
+                                    color: Color(0xFF1A1C1C),
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

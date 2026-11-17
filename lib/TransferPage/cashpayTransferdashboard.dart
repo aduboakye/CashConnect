@@ -1,5 +1,12 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/add_BatchTransfer.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/add_members.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/receiverTransfer_Page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/transferKeyboard_page.dart';
+import 'package:cashconnect_fanancial_suite/cashpay%20Dashboard/cashpay_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/search_members.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/scaning_page.dart';
 
 class Cashpaytransferdashboard extends StatefulWidget {
   const Cashpaytransferdashboard({super.key});
@@ -20,8 +27,9 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
         final hasRecipient = selectedRecipientName != null;
         final canContinue = validAmount && hasRecipient;
 
-        final formattedAmount =
-        validAmount ? amount.toStringAsFixed(2) : '0.00';
+        final formattedAmount = validAmount
+            ? amount.toStringAsFixed(2)
+            : '0.00';
 
         final String buttonText;
 
@@ -30,8 +38,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
         } else if (!validAmount) {
           buttonText = 'Enter an amount';
         } else {
-          buttonText =
-          'Send \$$formattedAmount to $selectedRecipientName';
+          buttonText = 'Send \$$formattedAmount to $selectedRecipientName';
         }
 
         return Padding(
@@ -42,8 +49,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             child: TextButton.icon(
               onPressed: canContinue
                   ? () {
-                // Add navigation to your review page here.
-              }
+                      // Add navigation to your review page here.
+                    }
                   : null,
               style: TextButton.styleFrom(
                 backgroundColor: const Color(0xFFFAE500),
@@ -71,11 +78,20 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
       },
     );
   }
+
   final List<String> keypadKeys = [
-    '1', '2', '3',
-    '4', '5', '6',
-    '7', '8', '9',
-    '.', '0', '⌫',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '.',
+    '0',
+    '⌫',
   ];
   bool showKeypad = false;
   Widget amountKeypad() {
@@ -83,9 +99,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Color(0xFFF5F6F2),
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(16),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -107,18 +121,12 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                 onPressed: () {
                   setState(() {
                     showKeypad = false;
-
                   });
                 },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      'Hide',
-                      style: TextStyle(
-                        color: Color(0xFF3C4A3D),
-                      ),
-                    ),
+                    Text('Hide', style: TextStyle(color: Color(0xFF3C4A3D))),
                     Icon(
                       Icons.keyboard_arrow_down,
                       color: Color(0xFF3C4A3D),
@@ -138,8 +146,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             itemCount: keypadKeys.length,
-            gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisExtent: 56,
               mainAxisSpacing: 8,
@@ -157,20 +164,18 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   foregroundColor: const Color(0xFF1A1C1C),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(
-                      color: Color(0xFFE4E7E0),
-                    ),
+                    side: const BorderSide(color: Color(0xFFE4E7E0)),
                   ),
                 ),
                 child: key == '⌫'
                     ? const Icon(Icons.backspace_outlined)
                     : Text(
-                  key,
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                        key,
+                        style: const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
               );
             },
           ),
@@ -178,6 +183,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
       ),
     );
   }
+
   void pressKey(String key) {
     String text = amountController.text;
 
@@ -203,6 +209,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
     // Display the result in the connected TextField.
     amountController.text = text;
   }
+
   String? selectedRecipientName;
   int? selectedMember;
   int? selectedcashpayMember;
@@ -246,7 +253,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                       borderRadius: BorderRadiusGeometry.circular(12),
                       child: Image.asset(image),
                     ),
-                    SizedBox(width: 5,),
+                    SizedBox(width: 5),
                     Flexible(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -588,6 +595,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         title: Container(
           width: 390,
           height: 80,
@@ -598,7 +607,14 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CashpayDashboard(),
+                        ),
+                      );
+                    },
                     icon: Icon(Icons.arrow_back, color: Color(0xFF3C4A3D)),
                   ),
                   Text(
@@ -651,50 +667,20 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                           showKeypad = !showKeypad;
                         });
                       },
-                      icon: const Icon(
-                        Icons.dialpad,
-                        color: Color(0xFF3C4A3D),
-                      ),
+                      icon: const Icon(Icons.dialpad, color: Color(0xFF3C4A3D)),
                     ),
                   ),
 
                   const SizedBox(width: 4),
 
-                  Expanded(
-                    child: sendTransferButton(),
-                  ),
+                  Expanded(child: sendTransferButton()),
                 ],
               ),
             ),
           ],
         ),
       ),
-     /* persistentFooterButtons: [
-        Container(
-          padding: EdgeInsets.only(top: 20, bottom: 32, left: 20, right: 20),
-          child: Container(
-            width: 350,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Color(0xFFFAE500),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: TextButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_forward, color: Colors.black),
-              iconAlignment: IconAlignment.end,
-              label: Text(
-                'Review Transfer',
-                style: GoogleFonts.hankenGrotesk(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1F1C00),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],*/
+
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.symmetric(vertical: 24, horizontal: 20),
@@ -715,6 +701,15 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                   children: [
                     Expanded(
                       child: TextField(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SearchMembers(),
+                            ),
+                          );
+                        },
+                        readOnly: true,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           hint: FittedBox(
@@ -732,7 +727,14 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                     ),
                     FittedBox(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ScaningPage(),
+                            ),
+                          );
+                        },
                         icon: Icon(Icons.qr_code_2, color: Color(0xFF006D33)),
                       ),
                     ),
@@ -766,17 +768,21 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                 child: Column(
                   children: [
                     Row(
-                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Container(
                             child: Row(
                               children: [
                                 ClipRRect(
-                                  child: Image.asset('images/border.png',width: 24,height: 24,),
+                                  child: Image.asset(
+                                    'images/border.png',
+                                    width: 24,
+                                    height: 24,
+                                  ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                SizedBox(width: 2,),
+                                SizedBox(width: 2),
 
                                 Text(
                                   'Paying',
@@ -784,9 +790,8 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                     fontSize: 11,
                                     color: Color(0xFF3C4A3D),
                                   ),
-
                                 ),
-                                SizedBox(width: 1,),
+                                SizedBox(width: 1),
                                 Flexible(
                                   child: Text(
                                     'Sarah Jenkins',
@@ -794,14 +799,17 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                       fontSize: 12,
 
                                       color: Color(0xFF3C4A3D),
-                                      fontWeight: FontWeight.bold
+                                      fontWeight: FontWeight.bold,
                                     ),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
-
                                   ),
                                 ),
-                                Icon(Icons.verified,color: Color(0xFF006D33),)
+                                Icon(
+                                  Icons.verified,
+                                  color: Color(0xFF006D33),
+                                  size: 15,
+                                ),
                               ],
                             ),
                           ),
@@ -850,7 +858,11 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             mainAxisAlignment: MainAxisAlignment.center,
 
                             children: [
-                              Icon(Icons.attach_money, color: Colors.green),
+                              Icon(
+                                Icons.attach_money,
+                                color: Colors.green,
+                                size: 40,
+                              ),
                               SizedBox(width: 4),
                               Expanded(
                                 child: SizedBox(
@@ -858,8 +870,10 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                   height: 40,
                                   child: TextField(
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
-
+                                    style: TextStyle(
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.bold,
+                                    ),
 
                                     readOnly: true,
                                     controller: amountController,
@@ -869,7 +883,7 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                                         ),
                                     decoration: const InputDecoration(
                                       hintText: '0.00',
-                                      border: InputBorder.none
+                                      border: InputBorder.none,
                                     ),
                                   ),
                                 ),
@@ -967,11 +981,56 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true, // Green circle
                             hasStar: true,
-                            isSelected: selectedMember == 5,
+                            // First member
+                            isSelected: selectedcashpayMember == 0,
                             onTap: () {
-                              setState(() =>selectedMember = 5);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 0;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    reverseTransitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    pageBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                        ) {
+                                          return ReceivertransferPage();
+                                        },
+                                    transitionsBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final slideAnimation =
+                                              Tween<Offset>(
+                                                begin: const Offset(1, 0),
+                                                end: Offset.zero,
+                                              ).animate(
+                                                CurvedAnimation(
+                                                  parent: animation,
+                                                  curve: Curves.easeInOut,
+                                                ),
+                                              );
+
+                                          return SlideTransition(
+                                            position: slideAnimation,
+                                            child: child,
+                                          );
+                                        },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           cashpaymember(
@@ -980,11 +1039,55 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true,
                             hasStar: true,
-                            isSelected: selectedMember == 0,
+                            // Second member
+                            isSelected: selectedcashpayMember == 1,
                             onTap: () {
-                              setState(() => selectedMember = 0);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 1;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    reverseTransitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    pageBuilder:
+                                        (
+                                          contex,
+                                          animation,
+                                          secondaryAnimation,
+                                        ) {
+                                          return ReceivertransferPage();
+                                        },
+                                    transitionsBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final slidetransition =
+                                              Tween<Offset>(
+                                                begin: Offset(1, 0),
+                                                end: Offset.zero,
+                                              ).animate(
+                                                CurvedAnimation(
+                                                  parent: animation,
+                                                  curve: Curves.easeIn,
+                                                ),
+                                              );
+                                          return SlideTransition(
+                                            position: slidetransition,
+                                            child: child,
+                                          );
+                                        },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           cashpaymember(
@@ -993,11 +1096,55 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: true,
                             hasStar: false,
-                            isSelected: selectedMember == 1,
+                            // Second member
+                            isSelected: selectedcashpayMember == 2,
                             onTap: () {
-                              setState(() => selectedMember = 1);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 2;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    reverseTransitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    pageBuilder:
+                                        (
+                                          contex,
+                                          animation,
+                                          secondaryAnimation,
+                                        ) {
+                                          return ReceivertransferPage();
+                                        },
+                                    transitionsBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final slidetransition =
+                                              Tween<Offset>(
+                                                begin: Offset(1.0, 0.0),
+                                                end: Offset.zero,
+                                              ).animate(
+                                                CurvedAnimation(
+                                                  parent: animation,
+                                                  curve: Curves.easeIn,
+                                                ),
+                                              );
+                                          return SlideTransition(
+                                            position: slidetransition,
+                                            child: child,
+                                          );
+                                        },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           cashpaymember(
@@ -1006,11 +1153,55 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: false,
                             hasStar: true,
-                            isSelected: selectedMember == 2,
+                            // Second member
+                            isSelected: selectedcashpayMember == 3,
                             onTap: () {
-                              setState(() => selectedMember = 2);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 3;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    reverseTransitionDuration: const Duration(
+                                      milliseconds: 800,
+                                    ),
+                                    pageBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                        ) {
+                                          return ReceivertransferPage();
+                                        },
+                                    transitionsBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final slidetransition =
+                                              Tween<Offset>(
+                                                begin: Offset(1.0, 0.0),
+                                                end: Offset.zero,
+                                              ).animate(
+                                                CurvedAnimation(
+                                                  parent: animation,
+                                                  curve: Curves.fastOutSlowIn,
+                                                ),
+                                              );
+                                          return SlideTransition(
+                                            position: slidetransition,
+                                            child: child,
+                                          );
+                                        },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           cashpaymember(
@@ -1021,9 +1212,46 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             hasStar: true,
                             isSelected: selectedcashpayMember == 4,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 4);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 4;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                        ) {
+                                          return ReceivertransferPage();
+                                        },
+                                    transitionsBuilder:
+                                        (
+                                          context,
+                                          animation,
+                                          secondaryAnimation,
+                                          child,
+                                        ) {
+                                          final slidetransition =
+                                              Tween<Offset>(
+                                                begin: Offset(1.0, 0.0),
+                                                end: Offset.zero,
+                                              ).animate(
+                                                CurvedAnimation(
+                                                  parent: animation,
+                                                  curve: Curves.easeIn,
+                                                ),
+                                              );
+                                          return SlideTransition(
+                                            position: slidetransition,
+                                            child: child,
+                                          );
+                                        },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           cashpaymember(
@@ -1032,15 +1260,84 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             isactive: false,
                             hasStar: false,
-                            isSelected: selectedcashpayMember == 3,
+                            isSelected: selectedcashpayMember == 5,
                             onTap: () {
-                              setState(() => selectedcashpayMember = 3);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedcashpayMember = 5;
+                                selectedMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (
+                                        context,
+                                        animation,
+                                        secondaryAnimation,
+                                        ) {
+                                      return ReceivertransferPage();
+                                    },
+                                    transitionsBuilder:
+                                        (
+                                        context,
+                                        animation,
+                                        secondaryAnimation,
+                                        child,
+                                        ) {
+                                      final slidetransition =
+                                      Tween<Offset>(
+                                        begin: Offset(1.0, 0.0),
+                                        end: Offset.zero,
+                                      ).animate(
+                                        CurvedAnimation(
+                                          parent: animation,
+                                          curve: Curves.easeIn,
+                                        ),
+                                      );
+                                      return SlideTransition(
+                                        position: slidetransition,
+                                        child: child,
+                                      );
+                                    },
+                                  ),
+                                );
+                              });
                             },
                           ),
                           GestureDetector(
-                            onTap: (){},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation, secondaryAnimation) {
+                                        return AddMembers();
+                                      },
+                                  transitionsBuilder:
+                                      (
+                                        context,
+                                        animation,
+                                        secondaryAnimation,
+                                        child,
+                                      ) {
+                                        final slidetransition =
+                                            Tween<Offset>(
+                                              begin: Offset(1.0, 0.0),
+                                              end: Offset.zero,
+                                            ).animate(
+                                              CurvedAnimation(
+                                                parent: animation,
+                                                curve: Curves.easeIn,
+                                              ),
+                                            );
+                                        return SlideTransition(
+                                          position: slidetransition,
+                                          child: child,
+                                        );
+                                      },
+                                ),
+                              );
+                            },
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -1087,6 +1384,12 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             onTap: () {
                               setState(() {
                                 selectedTransfer = 0;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddMembers(),
+                                  ),
+                                );
                               });
                             },
                           ),
@@ -1099,20 +1402,30 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             onTap: () {
                               setState(() {
                                 selectedTransfer = 1;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ScaningPage(),
+                                  ),
+                                );
                               });
                             },
                           ),
                           transferoption(
-                            name: 'Send multiole transfers',
-                            surname:
-                                'Send multiple transfer to cashpay users',
+                            name: 'Send multiple transfers',
+                            surname: 'Send multiple transfer to cashpay users',
                             icon: Icons.call_split,
                             color: Color(0xFFE2E2E2),
                             isSelected: selectedTransfer == 2,
                             onTap: () {
                               setState(() {
                                 selectedTransfer = 2;
-
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddBatchtransfer(),
+                                  ),
+                                );
                               });
                             },
                           ),
@@ -1154,11 +1467,20 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            // First recent member
                             isSelected: selectedMember == 0,
                             onTap: () {
-                              setState(() => selectedMember = 0);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedMember = 0;
+                                selectedcashpayMember = null;
+                                selectedRecipientName = 'Sarah';
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => TransferkeyboardPage(),
+                                  ),
+                                );
+                              });
                             },
                           ),
                           recent(
@@ -1168,25 +1490,15 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
-                            isSelected: selectedMember == 2,
-                            onTap: () {
-                              setState(() => selectedMember = 2);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
-                            },
-                          ),
-                          recent(
-                            title: 'Sarah Jenkins',
-                            subtitle: '@mchen',
-                            text: 'Instant ACH Linked • Priority Payee',
-                            image: 'images/cashpaym1.png',
-                            icon: Icons.verified,
-                            subtitle1: 'chloe.b@design.io',
+                            // First recent member
                             isSelected: selectedMember == 1,
                             onTap: () {
-                              setState(() => selectedMember = 1);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedMember = 1;
+                                selectedcashpayMember = null;
+                                selectedRecipientName = 'Sarah';
+
+                              });
                             },
                           ),
                           recent(
@@ -1196,11 +1508,31 @@ class _CashpaytransferdashboardState extends State<Cashpaytransferdashboard> {
                             image: 'images/cashpaym1.png',
                             icon: Icons.verified,
                             subtitle1: 'chloe.b@design.io',
+                            // First recent member
+                            isSelected: selectedMember == 2,
+                            onTap: () {
+                              setState(() {
+                                selectedMember = 2;
+                                selectedcashpayMember = null;
+                                selectedRecipientName = 'Sarah';
+                              });
+                            },
+                          ),
+                          recent(
+                            title: 'Sarah Jenkins',
+                            subtitle: '@mchen',
+                            text: 'Instant ACH Linked • Priority Payee',
+                            image: 'images/cashpaym1.png',
+                            icon: Icons.verified,
+                            subtitle1: 'chloe.b@design.io',
+                            // First recent member
                             isSelected: selectedMember == 3,
                             onTap: () {
-                              setState(() => selectedMember = 3);
-                              selectedcashpayMember = null;
-                              selectedRecipientName = 'Sarah';
+                              setState(() {
+                                selectedMember = 3;
+                                selectedcashpayMember = null;
+                                selectedRecipientName = 'Sarah';
+                              });
                             },
                           ),
                         ],

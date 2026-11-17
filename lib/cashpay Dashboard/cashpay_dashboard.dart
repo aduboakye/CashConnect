@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
 
 class CashpayDashboard extends StatefulWidget {
   const CashpayDashboard({super.key});
@@ -145,6 +146,8 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         title: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Row(
@@ -330,7 +333,14 @@ class _CashpayDashboardState extends State<CashpayDashboard> {
                               color: const Color(0xFFE2E2E2),
                             ),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Cashpaytransferdashboard(),
+                                  ),
+                                );
+                              },
                               icon: Icon(Icons.swap_horiz),
                             ),
                           ),

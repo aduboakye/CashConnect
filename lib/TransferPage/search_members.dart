@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+
 
 class SearchMembers extends StatelessWidget {
   const SearchMembers({super.key});
@@ -8,7 +10,9 @@ class SearchMembers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.close_outlined)),
+        leading: IconButton(onPressed: () {
+          Navigator.push(context,   MaterialPageRoute(builder: (context)=>Cashpaytransferdashboard()));
+        }, icon: Icon(Icons.close_outlined)),
         title: Text(
           'Select Contact',
           style: GoogleFonts.hankenGrotesk(

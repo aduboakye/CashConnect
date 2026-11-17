@@ -1,3 +1,4 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/receiverTransfer_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -86,7 +87,12 @@ class _ScheduleautopayPageState extends State<ScheduleautopayPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              Icon(Icons.arrow_back),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ReceivertransferPage()));
+
+                },
+                  child: Icon(Icons.arrow_back)),
               SizedBox(width: 5),
               Text(
                 'Schedule Auto Pay',
@@ -585,7 +591,10 @@ class _ScheduleautopayPageState extends State<ScheduleautopayPage> {
                                     color: const Color(0xFFEEEEEE),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Icon(Icons.account_balance_wallet,color: Color(0xFF006D33)),
+                                  child: const Icon(
+                                    Icons.account_balance_wallet,
+                                    color: Color(0xFF006D33),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Text(
@@ -644,7 +653,10 @@ class _ScheduleautopayPageState extends State<ScheduleautopayPage> {
                                     color: const Color(0xFFEEEEEE),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Icon(Icons.notifications_active_outlined,color: const Color(0xFF006D33),),
+                                  child: const Icon(
+                                    Icons.notifications_active_outlined,
+                                    color: const Color(0xFF006D33),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Text(
@@ -703,7 +715,10 @@ class _ScheduleautopayPageState extends State<ScheduleautopayPage> {
                                     color: const Color(0xFFEEEEEE),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const Icon(Icons.fingerprint,color: const Color(0xFF006D33),),
+                                  child: const Icon(
+                                    Icons.fingerprint,
+                                    color: const Color(0xFF006D33),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Text(

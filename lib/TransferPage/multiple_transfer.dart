@@ -1,4 +1,6 @@
 //import 'package:cashconnect_fanancial_suite/TransferPage/multiple_transfer.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/add_BatchTransfer.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/confirm_multipleTransfer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -133,7 +135,10 @@ class _MultipleTransferState extends State<MultipleTransfer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+        leading: IconButton(onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> AddBatchtransfer()));
+
+        }, icon: Icon(Icons.arrow_back)),
         title: Text(
           'Send to Multiple',
           style: GoogleFonts.hankenGrotesk(
@@ -576,7 +581,9 @@ class _MultipleTransferState extends State<MultipleTransfer> {
                   child: Padding(
                     padding: EdgeInsets.all(16),
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ConfirmMultipletransfer()));
+                      },
                       icon: Icon(Icons.arrow_forward,color: Colors.black,),
                       iconAlignment: IconAlignment.end,
                       style: ElevatedButton.styleFrom(

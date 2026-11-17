@@ -1,3 +1,6 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/confirm_transfer.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/receiverTransfer_Page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -215,7 +218,10 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+
+          },
           icon: Icon(Icons.arrow_back, color: Color(0xFF1A1C1C)),
         ),
         title: Container(
@@ -645,7 +651,10 @@ class _TransferkeyboardPageState extends State<TransferkeyboardPage> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ConfirmTransfer()));
+
+                                },
 
                                 label: Text(
                                   'Pay Sarah (\$${amountController.text.isEmpty ? '0.00' : amountController.text})',                                  style: GoogleFonts.hankenGrotesk(

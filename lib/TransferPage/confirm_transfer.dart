@@ -1,3 +1,5 @@
+import 'package:cashconnect_fanancial_suite/TransferPage/cashpayTransferdashboard.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/sucessful_transfer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -183,7 +185,10 @@ class ConfirmTransfer extends StatelessWidget {
                   child: Column(
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> SucessfulTransfer()));
+
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(348, 60),
                           backgroundColor: const Color(0xFFFAE500),
@@ -213,7 +218,10 @@ class ConfirmTransfer extends StatelessWidget {
                 SizedBox(height: 12),
 
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Cashpaytransferdashboard()));
+
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(348, 60),
                     backgroundColor: const Color(0xFFFFFFFF),

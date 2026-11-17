@@ -119,7 +119,12 @@ class _CompleteMultipletransferState extends State<CompleteMultipletransfer> {
         actions: [
           CircleAvatar(
             backgroundColor: Color(0xFFFFFFFF),
-            child: Icon(Icons.close),
+            child: GestureDetector(
+              onTap: (){
+                Navigator.pop(context);
+
+              },
+                child: Icon(Icons.close)),
           ),
         ],
       ),
