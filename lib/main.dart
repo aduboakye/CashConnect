@@ -32,6 +32,7 @@ import 'package:cashconnect_fanancial_suite/TransferPage/complete_multipleTransf
 import 'package:cashconnect_fanancial_suite/TransferPage/confirm_multipleTransfer.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/splitpayment_page.dart';
 import 'package:cashconnect_fanancial_suite/TransferPage/scheduleAutopay_page.dart';
+import 'package:cashconnect_fanancial_suite/TransferPage/multiple_splitpayment.dart';
 
 
 
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const  CashpayDashboard(),
+      home: const  MultipleSplitpayment(),
     );
   }
 }
