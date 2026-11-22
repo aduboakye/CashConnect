@@ -1,8 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+List<String> keypadkeys = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '9',
+  '0',
+  '.',
+  '⌫',
+];
+Widget keypad() {
+  return GridView.builder(
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    itemCount: keypadkeys.length,
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 3,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      mainAxisExtent: 60,
+    ),
+    itemBuilder: (context, index) {
+      final key = keypadkeys[index];
+      return TextButton(
+        onPressed: () {
+          debugPrint('key is press : $key');
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: const Color(0xFFEEEEEE),
+          foregroundColor: const Color(0xFF1A1C1C),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Text(
+          key,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+        ),
+      );
+    },
+  );
+}
+
 List<String> textamountdecision = ['Equal Split', 'Custom Amounts'];
 List<String> amount = [r'+$50', '+\$100', '+\$250', 'Clear'];
+Widget amountreceiver({
+  required String image,
+  required String titlename,
+  required String subtitlename,
+  required String amount,
+}) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(4),
+      color: Color(0xFFF3F3F4),
+    ),
+    child: ListTile(
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.asset(image),
+      ),
+      title: Text(
+        titlename,
+        style: GoogleFonts.hankenGrotesk(
+          color: Color(0xFF1A1C1C),
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Text(
+        subtitlename,
+        style: GoogleFonts.jetBrainsMono(
+          color: Color(0xFF3C4A3D),
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      trailing: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        decoration: BoxDecoration(
+          color: Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Text(
+          amount,
+          style: GoogleFonts.jetBrainsMono(
+            color: Color(0xFF3C4A3D),
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 Widget amountselection() {
   return Wrap(
     spacing: 8,
@@ -108,6 +206,7 @@ class _MultipleSplitpaymentState extends State<MultipleSplitpayment> {
           ),
         ],
       ),
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -371,10 +470,7 @@ class _MultipleSplitpaymentState extends State<MultipleSplitpayment> {
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [
-                              Color(0xFF6EAE8B),
-                              Color(0xFFFFFFFF),
-                            ],
+                            colors: [Color(0xFF6EAE8B), Color(0xFFFFFFFF)],
                           ),
                         ),
                         child: Row(
@@ -404,12 +500,14 @@ class _MultipleSplitpaymentState extends State<MultipleSplitpayment> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(width: 96, height: 20,
+                                Container(
+                                  width: 96,
+                                  height: 20,
                                   decoration: BoxDecoration(
                                     color: Color(0xFFE2E2E2),
-                                    shape: BoxShape.rectangle
+                                    shape: BoxShape.rectangle,
                                   ),
-                                  child:  Center(
+                                  child: Center(
                                     child: Text(
                                       'Exact Match',
                                       style: GoogleFonts.hankenGrotesk(
@@ -435,6 +533,154 @@ class _MultipleSplitpaymentState extends State<MultipleSplitpayment> {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(height: 12),
+                amountreceiver(
+                  image: 'images/border.png',
+                  titlename: 'Sarah Jenkins',
+                  subtitlename: '@sarahj • Request ready',
+                  amount: '\$200.00',
+                ),
+                SizedBox(height: 5),
+                amountreceiver(
+                  image: 'images/border.png',
+                  titlename: 'Michael Chen',
+                  subtitlename: '@mchen • Direct deposit',
+                  amount: '\$200.00',
+                ),
+                SizedBox(height: 5),
+                amountreceiver(
+                  image: 'images/border.png',
+                  titlename: 'Elena Rodriguez',
+                  subtitlename: '@elena_r • CashPay ID',
+                  amount: '\$200.00',
+                ),
+                SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF2F3131),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Icon(
+                          Icons.account_balance,
+                          color: Color(0xFF63FF94),
+                        ),
+                      ),
+                      // SizedBox(width: 4,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Primary Checking •••• 4921',
+                                style: GoogleFonts.hankenGrotesk(
+                                  color: Color(0xFF1A1C1C),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Container(
+                                width: 32.27,
+                                height: 25,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF8DAF9D),
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'ACH',
+                                    style: GoogleFonts.hankenGrotesk(
+                                      color: Color(0xFF006D33),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Available balance: \$4,250.00',
+                            style: GoogleFonts.jetBrainsMono(
+                              color: Color(0xFF1A1C1C),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: 32,
+                        height: 32,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFEEEEEE),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.keyboard_arrow_down, size: 18),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: keypad(),
+                ),
+                SizedBox(height: 24),
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(350, 56),
+                    backgroundColor: Color(0xFFFAE500),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  icon: Icon(Icons.arrow_forward, color: Color(0xFF1F1C00)),
+                  iconAlignment: IconAlignment.end,
+                  label: FittedBox(
+                    child: Text(
+                      r'Confirm Split ($200.00 / person)',
+                      style: GoogleFonts.hankenGrotesk(
+                        color: Color(0xFF1F1C00),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.lock_outline, color: Color(0xFF006D33)),
+                  label: Text(
+                    '256-bit bank encryption • CashPay Instant Guarantee',
+                    style: GoogleFonts.hankenGrotesk(
+                      fontSize: 11,
+                      color: Color(0xFF3C4A3D),
+                    ),
                   ),
                 ),
               ],
