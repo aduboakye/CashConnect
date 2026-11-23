@@ -206,7 +206,6 @@ class _MultipleSplitpaymentState extends State<MultipleSplitpayment> {
           ),
         ],
       ),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
