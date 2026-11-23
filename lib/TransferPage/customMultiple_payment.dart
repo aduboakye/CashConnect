@@ -9,8 +9,209 @@ class CustommultiplePayment extends StatefulWidget {
 }
 
 class _CustommultiplePaymentState extends State<CustommultiplePayment> {
-  final List<IconData> iconamountdecision = [Icons.balance, Icons.tune];
+  List<Color> customColor = [
+    Color(0xFF00D66B),
+    Color(0xFF7EDDBF),
+    Color(0xFFFAE500),
+  ];
+  Widget caspayreceivers({
+    required String image,
+    required String titlename,
+    required String subname,
+    required IconData icon,
+    required IconData nameicon,
+
+    required String amount,
+    required String text,
+    required Color statusColor,
+    Color color = const Color(0xFF006D33),
+    bool changecolor = false,
+  }) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Color(0xFFFFFFFF),
+        borderRadius: BorderRadiusGeometry.circular(8),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Stack(
+                children: [
+                  Image.asset(image),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Icon(Icons.circle, color: statusColor, size: 14),
+                  ),
+                ],
+              ),
+            ),
+            title: Row(
+              children: [
+                Text(
+                  titlename,
+                  style: GoogleFonts.hankenGrotesk(
+                    color: Color(0xFF1A1C1C),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                Icon(nameicon, color: Color(0xFF006D33), size: 15),
+              ],
+            ),
+            subtitle: Text(
+              subname,
+              style: GoogleFonts.jetBrainsMono(
+                color: Color(0xFF3C4A3D),
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+            ),
+            trailing: Container(
+              height: 32,
+              width: 32,
+              decoration: BoxDecoration(
+                color: Color(0xFFE8E8E8),
+                borderRadius: BorderRadiusGeometry.circular(12),
+              ),
+              child: Icon(icon,   color: changecolor ? color : Color(0xFF646464)),
+            ),
+          ),
+
+          SizedBox(height: 12),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              color: Color(0xFFF3F3F4),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          minimumSize: Size.zero,
+                          backgroundColor: statusColor,
+                          shape: RoundedRectangleBorder(),
+                        ),
+                        child: Text(
+                          text,
+                          style: GoogleFonts.jetBrainsMono(
+                            color: Color(0xFF3C4A3D),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        'share',
+                        style: GoogleFonts.jetBrainsMono(
+                          color: Color(0xFF3C4A3D),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  width: 200,
+                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
+                        SizedBox(width: 10),
+                        Text(
+                          amount,
+                          style: GoogleFonts.jetBrainsMono(
+                            color: Color(0xFF3C4A3D),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+
+                        IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  final List<IconData> iconamountdecision = [
+    Icons.attach_money,
+    Icons.percent_outlined,
+    Icons.pie_chart_outline,
+  ];
+  List<String> spiltdecision = [r'Amount ($)', 'Percent (%)', 'Shares (x)'];
+  int spilt = 0;
+  Widget spiltamount() {
+    return Row(
+      children: List.generate(spiltdecision.length, (index) {
+        final bool selected = spilt == index;
+
+        return Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(
+              right: index == spiltdecision.length - 1 ? 0 : 8,
+            ),
+            child: TextButton.icon(
+              onPressed: () {
+                setState(() {
+                  spilt = index;
+                });
+              },
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                minimumSize: Size.zero,
+                backgroundColor: selected
+                    ? const Color(0xFF006D33)
+                    : const Color(0xFFE8E8E8),
+                foregroundColor: selected
+                    ? const Color(0xFFFFFFFF)
+                    : const Color(0xFF3C4A3D),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              icon: Icon(iconamountdecision[index], size: 16),
+              label: Text(
+                spiltdecision[index],
+                style: GoogleFonts.hankenGrotesk(fontSize: 12),
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
   List<String> textamountdecision = ['Equal Split', 'Custom Amounts'];
+  final List<IconData> iconamount = [Icons.balance, Icons.tune];
 
   int selecteddecision = 0;
   Widget amountrdecision() {
@@ -34,7 +235,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
             backgroundColor: isSelected ? Color(0xFFFFFFFF) : Color(0xFFE8E8E8),
           ),
           icon: Icon(
-            iconamountdecision[index],
+            iconamount[index],
             color: isSelected ? Color(0xFF63FF94) : Color(0xFF3C4A3D),
           ),
           label: Text(
@@ -148,7 +349,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                 // height: 200,
+                  // height: 200,
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -262,7 +463,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                           TextButton(
                             onPressed: () {},
                             style: TextButton.styleFrom(
-                              backgroundColor:  Color(0xFF2C4535),
+                              backgroundColor: Color(0xFF2C4535),
                               minimumSize: Size.zero,
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               shape: RoundedRectangleBorder(),
@@ -271,15 +472,18 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                                 vertical: 2,
                               ),
                             ),
-                            child:  Text('USD', style: GoogleFonts.hankenGrotesk(
+                            child: Text(
+                              'USD',
+                              style: GoogleFonts.hankenGrotesk(
                                 color: Color(0xFF63FF94),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            ),
                           ),
-                          )
                         ],
                       ),
-                      SizedBox(height: 12,),
+                      SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -313,7 +517,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 3,),
+                      SizedBox(height: 3),
 
                       Row(
                         children: [
@@ -323,7 +527,6 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                               height: 4,
                               color: Color(0xFF63FF94),
                               radius: BorderRadiusGeometry.circular(2),
-
                             ),
                           ),
                           SizedBox(width: 8),
@@ -342,12 +545,11 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                               height: 4,
                               color: Color(0xFFFAE500),
                               radius: BorderRadiusGeometry.circular(2),
-
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 3,),
+                      SizedBox(height: 3),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -380,10 +582,160 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ALLOCATION METRIC',
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.hankenGrotesk(
+                        color: const Color(0xFF3C4A3D),
+                        fontSize: 12,
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.auto_fix_high,
+                            color: Color(0xFF006D33),
+                            size: 10,
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            'Auto-Balance Remainder',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.jetBrainsMono(
+                              color: const Color(0xFF006D33),
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                spiltamount(),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            'Recipients',
+                            textAlign: TextAlign.start,
+                            style: GoogleFonts.hankenGrotesk(
+                              color: const Color(0xFF1A1C1C),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Container(
+                            width: 32,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xFFE2E2E2),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '3',
+
+                                style: GoogleFonts.jetBrainsMono(
+                                  color: const Color(0xFF3C4A3D),
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Text(
+                      'Total: \$600.00',
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.jetBrainsMono(
+                        color: const Color(0xFF3C4A3D),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+SizedBox(height: 12,),
+                caspayreceivers(
+                  image: 'images/border.png',
+                  titlename: 'Sarah Jenkins',
+                  subname: '@sarahj • Split Dinner & Drinks',
+                  icon: Icons.lock_outline,
+                  amount: '\$200',
+                  statusColor: customColor[0],
+                  text: '41.7%',
+                  nameicon: Icons.verified,
+                    changecolor : true
+
+                ),
+                SizedBox(height: 12,),
+                caspayreceivers(
+                  image: 'images/border.png',
+                  titlename: 'Michael Chen',
+                  subname: '@mchen • Groceries Reimbursement',
+                  icon: Icons.lock_open_outlined,
+                  amount: '\$200',
+                  statusColor: customColor[1],
+                  text: '33.3%',
+                  nameicon: Icons.account_balance_wallet,
+                ),
+                SizedBox(height: 12,),
+                caspayreceivers(
+                  image: 'images/border.png',
+                  titlename: 'Elena Rodriguez',
+                  subname: '@elena_r • Utilities & WiFi',
+                  icon: Icons.lock_open_outlined,
+                  amount: '\$150',
+                  statusColor: customColor[2],
+                  text: '25.0%',
+                  nameicon: Icons.account_balance_wallet,
+                ),
+                SizedBox(height: 12,),
+                Container(
+                  height: 60,
+                  padding: EdgeInsets.symmetric(vertical: 16,horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF3F3F4),
+                    borderRadius: BorderRadius.circular(8)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     Container(
+                       height: 32,
+                       width: 35,
+                       decoration: BoxDecoration(
+                         color: Color(0xFFE8E8E8),
+                         borderRadius: BorderRadiusGeometry.circular(12),
+                       ),
+                       child: Icon(Icons.add),
+                     ),
+                     SizedBox(width: 3,),
+                     Text(
+                       'Add Another Person to Split',
+                       textAlign: TextAlign.start,
+                       style: GoogleFonts.hankenGrotesk(
+                         color: const Color(0xFF1A1C1C),
+                         fontSize: 16,
+                         fontWeight: FontWeight.w700
+                       ),
+                     ),
+                   ],
+                  ),
+                )
               ],
             ),
           ),
