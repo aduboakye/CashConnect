@@ -78,7 +78,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                 color: Color(0xFFE8E8E8),
                 borderRadius: BorderRadiusGeometry.circular(12),
               ),
-              child: Icon(icon,   color: changecolor ? color : Color(0xFF646464)),
+              child: Icon(icon, color: changecolor ? color : Color(0xFF646464)),
             ),
           ),
 
@@ -668,7 +668,7 @@ class _CustommultiplePaymentState extends State<CustommultiplePayment> {
                     ),
                   ],
                 ),
-SizedBox(height: 12,),
+                SizedBox(height: 12),
                 caspayreceivers(
                   image: 'images/border.png',
                   titlename: 'Sarah Jenkins',
@@ -678,10 +678,9 @@ SizedBox(height: 12,),
                   statusColor: customColor[0],
                   text: '41.7%',
                   nameicon: Icons.verified,
-                    changecolor : true
-
+                  changecolor: true,
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 12),
                 caspayreceivers(
                   image: 'images/border.png',
                   titlename: 'Michael Chen',
@@ -692,7 +691,7 @@ SizedBox(height: 12,),
                   text: '33.3%',
                   nameicon: Icons.account_balance_wallet,
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 12),
                 caspayreceivers(
                   image: 'images/border.png',
                   titlename: 'Elena Rodriguez',
@@ -703,39 +702,238 @@ SizedBox(height: 12,),
                   text: '25.0%',
                   nameicon: Icons.account_balance_wallet,
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 12),
                 Container(
                   height: 60,
-                  padding: EdgeInsets.symmetric(vertical: 16,horizontal: 16),
+                  padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                   decoration: BoxDecoration(
                     color: Color(0xFFF3F3F4),
-                    borderRadius: BorderRadius.circular(8)
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     Container(
-                       height: 32,
-                       width: 35,
-                       decoration: BoxDecoration(
-                         color: Color(0xFFE8E8E8),
-                         borderRadius: BorderRadiusGeometry.circular(12),
-                       ),
-                       child: Icon(Icons.add),
-                     ),
-                     SizedBox(width: 3,),
-                     Text(
-                       'Add Another Person to Split',
-                       textAlign: TextAlign.start,
-                       style: GoogleFonts.hankenGrotesk(
-                         color: const Color(0xFF1A1C1C),
-                         fontSize: 16,
-                         fontWeight: FontWeight.w700
-                       ),
-                     ),
-                   ],
+                    children: [
+                      Container(
+                        height: 32,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE8E8E8),
+                          borderRadius: BorderRadiusGeometry.circular(12),
+                        ),
+                        child: Icon(Icons.add),
+                      ),
+                      SizedBox(width: 3),
+                      Text(
+                        'Add Another Person to Split',
+                        textAlign: TextAlign.start,
+                        style: GoogleFonts.hankenGrotesk(
+                          color: const Color(0xFF1A1C1C),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
-                )
+                ),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF63FF94),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Icon(Icons.verified_user_outlined),
+                      ),
+                      SizedBox(width: 5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'Ledger Check: Exact Match',
+                                style: GoogleFonts.hankenGrotesk(
+                                  color: Color(0xFF1A1C1C),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                r'$0.00 remainder',
+                                style: GoogleFonts.jetBrainsMono(
+                                  color: Color(0xFF006D33),
+                                  //fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Zero unallocated funds • Ready for instant bank \ndispatch',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF3C4A3D),
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'PAYMENT SOURCE',
+                            style: GoogleFonts.hankenGrotesk(
+                              color: Color(0xFF3C4A3D),
+                              fontSize: 12,
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.tune,color: Color(0xFF006D33),),
+                            label: Text(
+                              'CHANGE',
+                              style: GoogleFonts.hankenGrotesk(
+                                color: Color(0xFF006D33),
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Color(0xFFE8E8E8),
+                                borderRadius: BorderRadius.circular(12),
+                            ),
+
+                            child: Icon(Icons.account_balance,),
+                          ),
+                          SizedBox(width: 5),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+
+                                  Text(
+                                    'Chase Premier Checking',
+                                    style: GoogleFonts.hankenGrotesk(
+                                      color: Color(0xFF1A1C1C),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+
+                              Text(
+                                '•••• 4921 • Avail:\$4,250.00',
+                                style: GoogleFonts.jetBrainsMono(
+                                  color: Color(0xFF3C4A3D),
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(width: 5,),
+                          TextButton(onPressed: (){}, 
+                            style: TextButton.styleFrom(
+                              backgroundColor: Color(0xFF63FF94),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(2)
+                              )
+                            ),
+                            child:                              Text(
+                            'ACH\nReady',
+                            style: GoogleFonts.jetBrainsMono(
+                              color: Color(0xFF3C4A3D),
+                              // fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ), )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 24),
+
+                SizedBox(height: 20),
+                ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size(350, 56),
+                    backgroundColor: Color(0xFFFAE500),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  icon: Icon(Icons.arrow_forward, color: Color(0xFF1F1C00)),
+                  iconAlignment: IconAlignment.end,
+                  label: FittedBox(
+                    child: Text(
+                      r'Confirm Custom Split($600.00)',
+                      style: GoogleFonts.hankenGrotesk(
+                          color: Color(0xFF1F1C00),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      ),
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      //maximumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap
+                  ),
+                  icon: Icon(Icons.shield, color: Color(0xFF006D33)),
+                  label: Text(
+                    '256-bit bank encryption • Recipients notified of breakdown',
+                    style: GoogleFonts.hankenGrotesk(
+                      fontSize: 11,
+                      color: Color(0xFF3C4A3D),
+                    ),
+                  ),
+                ),
+                Text(
+                  r'Reset to Equal Split ($200.00 / person)',
+                  style: GoogleFonts.hankenGrotesk(
+                    fontSize: 11,
+                    color: Color(0xFF3C4A3D),
+                    decoration: TextDecoration.underline,
+                    decorationColor: const Color(0xFF3C4A3D),
+                    decorationThickness: 1,
+                  ),
+                ),
               ],
             ),
           ),
